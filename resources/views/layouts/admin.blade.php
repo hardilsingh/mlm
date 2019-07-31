@@ -38,6 +38,8 @@
     </script>
 </head>
 
+@yield('styles')
+
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
     @include('includes.header')
     <div class="app-body">

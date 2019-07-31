@@ -4,7 +4,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="nav-icon icon-speedometer"></i> Dashboard
-                    <span class="badge badge-primary">NEW</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/investors">
+                    <i class="nav-icon icon-user"></i> Your Profile
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/investors">
+                    <i class="nav-icon icon-user"></i> View Investors
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('investors.create')}}">
+                    <i class="nav-icon icon-user"></i> Register User
                 </a>
             </li>
         </ul>
