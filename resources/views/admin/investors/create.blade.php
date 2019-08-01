@@ -58,7 +58,7 @@
             <div class="col-lg-3">
                 <div class="form-group">
                     <label for="name">Investor ID:</label>
-                    {!! Form::text('investor_id' , null , ['class'=>'form-control' , 'placeholder'=>'Enter name']) !!}
+                    {!! Form::text('vid' , $new_vid , ['class'=>'form-control' , 'readonly' , 'style'=>'background-color:gray; color:white']) !!}
                 </div>
             </div>
             <div class="col-lg-3">
@@ -162,15 +162,15 @@
             <div class="col-lg-4">
                 <div class="form-group">
                     <label for="path">Upload Addhar Card (Back:)</label>
-                    {!! Form::file('path' , null , ['class'=>'form-control']) !!}
+                    {!! Form::file('path_2' , null , ['class'=>'form-control']) !!}
                 </div>
 
             </div>
 
             <div class="col-lg-4">
                 <div class="form-group">
-                    <label for="path">Upload Pan Card (Back:)</label>
-                    {!! Form::file('path' , null , ['class'=>'form-control']) !!}
+                    <label for="path">Upload your Pan Card:</label>
+                    {!! Form::file('path_3' , null , ['class'=>'form-control']) !!}
                 </div>
 
             </div>
