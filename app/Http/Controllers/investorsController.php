@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\city;
 use App\state;
 use App\country;
+use App\Http\Requests\registerUser;
 
 class investorsController extends Controller
 {
@@ -39,7 +40,7 @@ class investorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(registerUser $request)
     {
         //
     }
