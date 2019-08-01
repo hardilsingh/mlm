@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 use App\addressbook;
 use App\phonebook;
 use Illuminate\Support\Facades\Storage;
-use App\doc;
 use Illuminate\Support\Facades\Auth;
 
 class investorsController extends Controller
