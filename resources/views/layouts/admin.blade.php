@@ -21,7 +21,6 @@
     <link rel="icon" type="image/ico" href="./img/favicon.ico" sizes="any" />
     <!-- Main styles for this application-->
     <link href="/css/style.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/babfd76238.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics-->
     <script>

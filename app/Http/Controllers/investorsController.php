@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\city;
+use App\state;
+use App\country;
 
 class investorsController extends Controller
 {
@@ -24,7 +27,10 @@ class investorsController extends Controller
     public function create()
     {
         //
-        return view('admin.investors.create');
+        $cities = city::pluck('name' , 'id');
+        $states = state::pluck('name' , 'id');
+        $countries = country::pluck('name' , 'id');
+        return view('admin.investors.create' , compact(['cities' , 'states' , 'countries']));
     }
 
     /**
