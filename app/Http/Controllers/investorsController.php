@@ -95,6 +95,11 @@ class investorsController extends Controller
         $image1->move($path, $imageName1);
         $image2->move($path, $imageName2);
         $image3->move($path, $imageName3);
+
+        $request->session()->flash('created', 'User registerd successfully! Your Password and login id has been sent to registered mobile number.');
+
+        return redirect();
+
     }
 
     /**

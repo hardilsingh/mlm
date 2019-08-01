@@ -7,8 +7,20 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/investors">
+                <a class="nav-link" href="/profile">
                     <i class="nav-icon icon-user"></i> Your Profile
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('investors.create')}}">
+                    <i class="nav-icon icon-user"></i> Register User
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('treeView.index')}}">
+                    <i class="nav-icon icon-user"></i> Tree View
                 </a>
             </li>
             <li class="nav-item">
@@ -16,11 +28,8 @@
                     <i class="nav-icon icon-user"></i> View Investors
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('investors.create')}}">
-                    <i class="nav-icon icon-user"></i> Register User
-                </a>
-            </li>
+
+
         </ul>
     </nav>
 </div>

@@ -24,3 +24,5 @@ Route::get('/home', function () {
 });
 
 Route::resource('/investors', 'investorsController');
+Route::resource('/payments', 'paymentsController');
+Route::resource('/treeView', 'treeViewController');
