@@ -3,9 +3,6 @@
 @section('styles')
 
 <style>
-    i {
-        font-size: 50px;
-    }
 
     p {
         font-size: 18px;

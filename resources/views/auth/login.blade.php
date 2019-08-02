@@ -20,8 +20,9 @@
     <title>Login to MLM</title>
     <!-- Main styles for this application-->
     <link href="/css/style.min.css" rel="stylesheet">
+    <link href="/fontawesome/css/all.css" rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics-->
-    <script src="https://kit.fontawesome.com/babfd76238.js"></script>
+    
 
     <script>
         window.dataLayer = window.dataLayer || [];

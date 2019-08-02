@@ -55,14 +55,13 @@ class investorsController extends Controller
     {
         //
         $input = $request->all();
-        $password = round(rand(100000, 99999999));
 
         $latest_vid = User::orderBy('created_at', 'DESC')->first();
 
         $new_user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
-            'password' => Hash::make($password),
+            'password' => Hash::make($input['ph']),
             'vid' => $latest_vid->vid + 1,
             'pin' => rand(1000, 9999),
             'points' => 0,

@@ -4,16 +4,6 @@
 @stop
 @section('content')
 
-<div class="row" style="padding:20px 0px;">
-    <div class="col-lg-12 text-center">
-        <div class="row">
-            <div class="col-lg-12">
-                <span class="badge badge-info text-center" style="font-size:25px;">You</span>
-            </div>
-        </div>
-
-    </div>
-</div>
 <div class="col-lg-12">
     <div class="row" style="padding:30px 0px;">
         <div class="col-lg-12 text-center">
@@ -34,6 +24,11 @@
     </div>
 </div>
 
+<hr class="hr" style="padding:0px 30px;">
+
+
+
+@if(Auth::user()->role == 1)
 <div class="row">
     <div class="col-lg-12 text-center">
         <div class="row">
@@ -94,6 +89,33 @@
         </div>
     </div>
 </div>
+@endif
+
+
+@if(Auth::user()->role == 0)
+
+@if(Auth::user()->side == 1 )
+<div class="row text-center" style="padding:0 60px;">
+    @foreach($under_users_left as $user)
+    <div class="col-lg-3" style="display:flex; flex-direction:column; align-items:center">
+        <div style="height:30px; width:2px; background-color:darkgray"></div>
+        <img src="/img/user-tie -orange.svg" alt="" height="100px">
+        <p class="badge badge-warning" style="font-size:15px;">{{$user->name}}</p>
+        <p class="badge badge-danger" style="font-size:15px;"><a href="#" class=" nav-link text-white">{{$user->vid}}</a></p>
+    </div>
+    @endforeach
+</div>
+@endif
+
+@if(Auth::user()->side == 2 )
+@foreach($under_users_right as $user)
+
+@endforeach
+@endif
+
+
+
+@endif
 
 
 

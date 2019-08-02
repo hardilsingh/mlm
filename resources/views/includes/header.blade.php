@@ -5,13 +5,20 @@
     </a>
     <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item px-3">
-            <a class="nav-link" href="#">Dashboard</a>
+            <a class="nav-link" href="/home">Dashboard</a>
         </li>
         <li class="nav-item px-3">
-            <a class="nav-link" href="#">Users</a>
+            <a class="nav-link" href="{{route('investors.index')}}">Users</a>
         </li>
         <li class="nav-item px-3">
-            <a class="nav-link" href="#">Settings</a>
+            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto" style="margin-right:20px;">
@@ -21,7 +28,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">Your Email</a>
+            <a href="#" class="nav-link">{{Auth::user()->name}}</a><span class="badge badge-success">ID: {{Auth::user()->vid}}</span>
         </li>
     </ul>
 </header>

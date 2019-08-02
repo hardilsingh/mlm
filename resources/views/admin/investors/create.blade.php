@@ -117,8 +117,14 @@
         <div class="row" style="padding:0px 30px;">
             <div class="col-lg-3">
                 <div class="form-group">
+                    @if(Auth::user()->role == 1)
                     <label for="name">Side:</label>
                     {!! Form::select('side' , ['1'=>'Left' , '2'=>'Right'] , '' , ['class'=>'form-control']) !!}
+                    @endif
+                    @if(Auth::user()->role == 0)
+                    <label for="name">Side:</label>
+                    {!! Form::text('side' , Auth::user()->side == 1 ? '1' : '2' , ['class'=>'form-control' , 'readonly']) !!}
+                    @endif
                 </div>
             </div>
             <div class="col-lg-3">
@@ -161,7 +167,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="form-group">
-                    <label for="path">Upload Addhar Card (Back:)</label>
+                    <label for="path_2">Upload Addhar Card (Back:)</label>
                     {!! Form::file('path_2' , null , ['class'=>'form-control']) !!}
                 </div>
 
@@ -169,7 +175,7 @@
 
             <div class="col-lg-4">
                 <div class="form-group">
-                    <label for="path">Upload your Pan Card:</label>
+                    <label for="path_3">Upload your Pan Card:</label>
                     {!! Form::file('path_3' , null , ['class'=>'form-control']) !!}
                 </div>
 
