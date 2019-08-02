@@ -3,29 +3,29 @@
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
-                    <i class="nav-icon icon-speedometer"></i> Dashboard
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/profile">
-                    <i class="nav-icon icon-user"></i> Your Profile
+                    <i class="fas fa-user-circle"></i> Your Profile
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('investors.create')}}">
-                    <i class="nav-icon icon-user"></i> Register User
+                    <i class="fas fa-registered"></i> Register User
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('treeView.index')}}">
-                    <i class="nav-icon icon-user"></i> Tree View
+                    <i class="fas fa-tree"></i> Tree View
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/investors">
-                    <i class="nav-icon icon-user"></i> View Investors
+                    <i class="fas fa-money-check-alt"></i> View Investors
                 </a>
             </li>
 

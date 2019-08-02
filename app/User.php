@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function address() {
+        return $this->hasOne('App/addressbook' , 'user_id');
+    }
+
+    public function phonebook() {
+        return $this->hasOne('App\phonebook' , 'user_id');
+    }
+
 }

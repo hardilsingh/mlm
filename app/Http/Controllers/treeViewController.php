@@ -16,8 +16,11 @@ class treeViewController extends Controller
     public function index()
     {
         //
-        $under_users = User::where('created_by' , Auth::user()->vid)->get();
-        return view('admin.treeView.index' , compact('under_users'));
+        $under_users_left = User::where('created_by' , Auth::user()->vid)
+        ->where('side' , 1)->get();
+        $under_users_right = User::where('created_by' , Auth::user()->vid)
+        ->where('side' , 2)->get();
+        return view('admin.treeView.index' , compact('under_users_left' , 'under_users_right'));
     }
 
     /**

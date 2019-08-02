@@ -21,6 +21,7 @@
     <link rel="icon" type="image/ico" href="./img/favicon.ico" sizes="any" />
     <!-- Main styles for this application-->
     <link href="/css/style.min.css" rel="stylesheet">
+    <link href="/fontawesome/css/all.css" rel="stylesheet">
 
     <!-- Global site tag (gtag.js) - Google Analytics-->
     <script>
@@ -36,6 +37,12 @@
         gtag('config', 'UA-118965717-5');
     </script>
 </head>
+
+<style>
+    i {
+        margin-right:10px;
+    }
+</style>
 
 @yield('styles')
 

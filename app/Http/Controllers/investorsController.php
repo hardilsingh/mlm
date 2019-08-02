@@ -24,6 +24,9 @@ class investorsController extends Controller
     public function index()
     {
         //
+
+        $users = User::paginate(15)->sortByDesc('created_at');
+        return view('admin.investors.index' ,  compact('users'));
     }
 
     /**
@@ -97,8 +100,6 @@ class investorsController extends Controller
         $image3->move($path, $imageName3);
 
         $request->session()->flash('created', 'User registerd successfully! Your Password and login id has been sent to registered mobile number.');
-
-        return redirect();
 
     }
 
