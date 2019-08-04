@@ -38,6 +38,8 @@ class registerUser extends FormRequest
             'addhar_number'=>'required|min:12|max:12',
             'pan_number'=>'required',
             'path'=>'required|image|mimes:jpeg,png,jpg|max:2048',
+            'path_2'=>'required|image|mimes:jpeg,png,jpg|max:2048',
+            'path_3'=>'required|image|mimes:jpeg,png,jpg|max:2048',
             'created_by',
         ];
     }

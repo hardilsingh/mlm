@@ -19,7 +19,7 @@
 
     <div class="row">
         <div class="col-lg-12 text-center">
-            <p class="badge badge-danger" style="font-size:15px;">{{Auth::user()->vid}}</p>
+            <p class="badge badge-danger" style="font-size:15px;"><a href="#" class=" nav-link text-white">ID: {{Auth::user()->vid}}</a></p>
         </div>
     </div>
 </div>
@@ -61,7 +61,7 @@
 
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p class="badge badge-danger" style="font-size:15px;">{{$user_left->vid}}</p>
+                    <p class="badge badge-danger" style="font-size:15px;"><a href="#" class=" nav-link text-white">ID: {{$user_left->vid}}</a></p>
                 </div>
             </div>
             @endforeach
@@ -82,7 +82,7 @@
 
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p class="badge badge-danger" style="font-size:15px;">{{$user_right->vid}}</p>
+                <p class="badge badge-danger" style="font-size:15px;"><a href="#" class=" nav-link text-white">ID: {{$user_right->vid}}</a></p>
                 </div>
             </div>
             @endforeach
@@ -101,7 +101,7 @@
         <div style="height:30px; width:2px; background-color:darkgray"></div>
         <img src="/img/user-tie -orange.svg" alt="" height="100px">
         <p class="badge badge-warning" style="font-size:15px;">{{$user->name}}</p>
-        <p class="badge badge-danger" style="font-size:15px;"><a href="#" class=" nav-link text-white">{{$user->vid}}</a></p>
+        <p class="badge badge-danger" style="font-size:15px;"><a href="#" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
     </div>
     @endforeach
 </div>

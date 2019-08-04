@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2019 at 09:47 PM
+-- Generation Time: Aug 02, 2019 at 08:15 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -44,8 +44,12 @@ CREATE TABLE `addressbooks` (
 --
 
 INSERT INTO `addressbooks` (`id`, `user_id`, `street`, `city_id`, `state_id`, `country_id`, `updated_at`, `created_at`) VALUES
-(20, 32, '662/7 Mehar chand Road Gurdaspur', 11, 27, 100, '2019-08-01', '2019-08-01'),
-(21, 33, '662/7 Mehar chand Road Gurdaspur', 16, 27, 100, '2019-08-01', '2019-08-01');
+(27, 40, '662/7 Mehar chand Road Gurdaspur', 15, 27, 100, '2019-08-02', '2019-08-02'),
+(28, 41, '662/7 Mehar chand Road Gurdaspur', 14, 27, 100, '2019-08-02', '2019-08-02'),
+(29, 42, '662/7 Mehar chand Road Gurdaspur', 3, 27, 100, '2019-08-02', '2019-08-02'),
+(30, 43, '662/7 Mehar chand Road Gurdaspur', 9, 27, 100, '2019-08-02', '2019-08-02'),
+(31, 44, '662/7 Mehar chand Road Gurdaspur', 15, 27, 100, '2019-08-02', '2019-08-02'),
+(32, 45, '662/7 Mehar chand Road Gurdaspur', 10, 27, 100, '2019-08-02', '2019-08-02');
 
 -- --------------------------------------------------------
 
@@ -1882,8 +1886,13 @@ CREATE TABLE `phonebooks` (
 --
 
 INSERT INTO `phonebooks` (`id`, `user_id`, `ph`, `created_at`, `updated_at`) VALUES
-(17, 32, '7340910031', '2019-08-01', '2019-08-01'),
-(18, 33, '7340910031', '2019-08-01', '2019-08-01');
+(19, 1, '7340910031', '0000-00-00', '0000-00-00'),
+(25, 40, '7340910031', '2019-08-02', '2019-08-02'),
+(26, 41, '7340910031', '2019-08-02', '2019-08-02'),
+(27, 42, '7340910031', '2019-08-02', '2019-08-02'),
+(28, 43, '7340910031', '2019-08-02', '2019-08-02'),
+(29, 44, '7340910031', '2019-08-02', '2019-08-02'),
+(30, 45, '7340910031', '2019-08-02', '2019-08-02');
 
 -- --------------------------------------------------------
 
@@ -1970,9 +1979,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `vid`, `pin`, `points`, `side`, `invested`, `role`, `remember_token`, `created_at`, `updated_at`, `pan_number`, `addhar_number`, `is_verified`, `created_by`) VALUES
-(1, 'Hardil Singh', 'hardilsingh87@gmail.com', NULL, '$2y$10$VWb6pLhVb7d4DuVxdIFQ1eKXk/1SYICkBkfqSKXJWW22pybt8WtFi', 10001, NULL, NULL, NULL, NULL, NULL, NULL, '2019-07-30 06:06:23', '2019-07-30 06:06:23', NULL, NULL, 1, NULL),
-(32, 'Mansimar Singh', 'singhhardil87@gmail.com', NULL, '$2y$10$/9RyLx9vyxx2EP35Q0AsQeR/VM3X3XDbTmzfPjkI6N0JeUipDu3/y', 10002, 1175, 0, '1', 1100, 0, NULL, '2019-08-01 14:00:27', '2019-08-01 14:00:27', '789452555', '789456123012', 0, '10001'),
-(33, 'Riya', 'riya@gmail.com', NULL, '$2y$10$e2GyY3yJbI9F/oU4Bb8d8e4hD.70zGr3oo0anAVxZL7kxqgeuPDaq', 10003, 6150, 0, '2', 1100, 0, NULL, '2019-08-01 14:01:39', '2019-08-01 14:01:39', '789456', '789456123012', 0, '10001');
+(1, 'Hardil Singh', 'hardilsingh87@gmail.com', NULL, '$2y$10$VWb6pLhVb7d4DuVxdIFQ1eKXk/1SYICkBkfqSKXJWW22pybt8WtFi', 10001, NULL, NULL, NULL, NULL, 1, NULL, '2019-07-30 06:06:23', '2019-07-30 06:06:23', NULL, NULL, 1, NULL),
+(40, 'Mansimar Singh', 'kobesingh87@gmail.com', NULL, '$2y$10$6beAlxLi.CjeJb5zDPEyau8AqLpLRwGwt4Jo6mxyKDXB1L5cVeDwi', 10002, 2100, 0, '1', 1100, 0, NULL, '2019-08-02 08:06:41', '2019-08-02 08:06:41', '789456', '789456123012', 0, '10001'),
+(41, 'Udit sharma', 'udit@gmail.com', NULL, '$2y$10$rmoCxCxG7Cagtnn7ZVAmW.pU/kQB/5IErQNKXIEjxj.oFgNMzdDtK', 10003, 5285, 0, '2', 1234, 0, NULL, '2019-08-02 08:08:28', '2019-08-02 08:08:28', '789', '789456123012', 0, '10001'),
+(42, 'Aditi Sharma', 'aditi@gmail.com', NULL, '$2y$10$SPSr3qk.KYCvmLrQmiJ97Opg08Ts9gVA719leFTeO3kMQf9zTWctu', 10004, 2085, 0, '1', 78966, 0, NULL, '2019-08-02 08:19:43', '2019-08-02 08:19:43', '789456123', '789012456123', 0, '10002'),
+(43, 'Riya', 'riya@gmail.com', NULL, '$2y$10$Cb/MpDHb91i7F92n0CyksuB9L7GZ/3WmKKc17gdVCqIFD5aVpqnye', 10005, 6450, 0, '1', 7888, 0, NULL, '2019-08-02 08:29:44', '2019-08-02 08:29:44', '789456123', '789456123012', 0, '10002'),
+(44, 'Jasnoor Sokhi', 'sokhi@gmail.com', NULL, '$2y$10$9ls6xucmc2SyVePA9uxSB.ZGtiU0QxvMfnPL1um/Sf6M.BOVRawpK', 10006, 7972, 0, '1', 1100, 0, NULL, '2019-08-02 11:54:03', '2019-08-02 11:54:03', '789456', '789456123012', 0, '10002'),
+(45, 'Manav', 'manav@gmail.com', NULL, '$2y$10$x2V26.2FUVygEKsRfGgm3Oz3S71Rx0621TkpzUA8RJX40hUdu.NQG', 10007, 4400, 0, '1', 1100, 0, NULL, '2019-08-02 11:57:10', '2019-08-02 11:57:10', '789456', '789456123012', 0, '10002');
 
 --
 -- Indexes for dumped tables
@@ -2041,7 +2054,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `addressbooks`
 --
 ALTER TABLE `addressbooks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `cities`
@@ -2071,7 +2084,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `phonebooks`
 --
 ALTER TABLE `phonebooks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `states`
@@ -2083,7 +2096,7 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
