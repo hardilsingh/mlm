@@ -24,9 +24,12 @@ class investorsController extends Controller
     public function index()
     {
         //
-
-        $users = User::paginate(15)->sortByDesc('created_at');
-        return view('admin.investors.index' ,  compact('users'));
+        if (Auth::user()->role == 1) {
+            $users = User::paginate(15)->sortByDesc('created_at');
+        }else {
+            $users = User::where('created_by' , Auth::user()->vid)->paginate(15);
+        }
+        return view('admin.investors.index',  compact('users'));
     }
 
     /**
@@ -70,7 +73,7 @@ class investorsController extends Controller
             'role' => 0,
             'addhar_number' => $input['addhar_number'],
             'pan_number' => $input['pan_number'],
-            'created_by'=> Auth::user()->vid,
+            'created_by' => Auth::user()->vid,
         ]);
 
         $new_address = addressbook::create([
@@ -99,7 +102,6 @@ class investorsController extends Controller
         $image3->move($path, $imageName3);
 
         $request->session()->flash('created', 'User registerd successfully! Your Password and login id has been sent to registered mobile number.');
-
     }
 
     /**
