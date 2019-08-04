@@ -38,6 +38,16 @@
     </script>
 </head>
 
+<style>
+
+body {
+    background: url("/img/hero-1.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+</style>
+
 <body class="app flex-row align-items-center">
     <div class="container">
         <div class="row justify-content-center">
@@ -114,13 +124,6 @@
             </div>
         </div>
     </div>
-    <!-- CoreUI and necessary plugins-->
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/pace-progress/pace.min.js"></script>
-    <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
-    <script src="node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
 </body>
 
 </html>
