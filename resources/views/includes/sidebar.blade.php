@@ -2,7 +2,7 @@
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/home">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
             </li>
@@ -28,6 +28,13 @@
                     <i class="fas fa-money-check-alt"></i> View Investors
                 </a>
             </li>
+            @if(Auth::user()->role == 1)
+            <li class="nav-item">
+                <a class="nav-link" href="/verify-users">
+                    <i class="fas fa-user-check"></i> Verify Users
+                </a>
+            </li>
+            @endif
 
 
         </ul>

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,15 +17,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/pending-verification', function () {
+    return view('admin.pending-verification.msg');
+});
+
 Auth::routes();
 
 
 
-Route::get('/home', function () {
-    return view('admin.dashboard.index');
+Route::group(['middleware' => ['is_verified']], function () {
+    Route::get('/home', function () {
+        return view('admin.dashboard.index');
+    });
+    Route::resource('/investors', 'investorsController');
+    Route::resource('/payments', 'paymentsController');
+    Route::resource('/treeView', 'treeViewController');
+    Route::resource('/profile', 'profileController');
+    Route::resource('/verify-users', 'verifyUsersController');
 });
-
-Route::resource('/investors', 'investorsController');
-Route::resource('/payments', 'paymentsController');
-Route::resource('/treeView', 'treeViewController');
-Route::resource('/profile', 'profileController');
