@@ -4,7 +4,7 @@
 
 <div class="col-lg-12" style="padding:100px 30px;">
     <div class="card">
-        <h5 class="card-header badge badge-warning" style="font-size:40px;">Pending Verification</h5>
+        <h5 class="card-header badge bg-red" style="font-size:40px;">Pending Verification</h5>
         <div class="card-body">
             <h5 class="card-title">You have a pending verfication with us.</h5>
             <p class="card-text">Your Verification will be completed within 24 hours. If not done please contact your superior.</p>
@@ -35,7 +35,7 @@
                         @endif
                     </td>
                     <td style="font-size:18px;">
-                        <span class="badge badge-danger">Pending verification</span>
+                        <span class="badge bg-red">Pending verification</span>
                     </td>
                 </tr>
 
@@ -44,6 +44,13 @@
     </div>
 </div>
 
+@stop
 
+@section('scripts')
+    <!-- Custom Js -->
+    <script src="js/admin.js"></script>
+    <script src="js/pages/index.js"></script>
 
+    <!-- Demo Js -->
+    <script src="js/demo.js"></script>
 @stop

@@ -74,6 +74,8 @@ class investorsController extends Controller
             'addhar_number' => $input['addhar_number'],
             'pan_number' => $input['pan_number'],
             'created_by' => Auth::user()->vid,
+            'dob'=>$input['dob'],
+            'gender'=>$input['gender'],
         ]);
 
         $new_address = addressbook::create([

@@ -1,63 +1,100 @@
 <!DOCTYPE html>
-<!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v2.1.15
-* @link https://coreui.io
-* Copyright (c) 2018 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://coreui.io/license)
--->
-
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Multilevel Marketing</title>
-    <!-- Icons-->
-    <link rel="icon" type="image/ico" href="./img/favicon.ico" sizes="any" />
-    <!-- Main styles for this application-->
-    <link href="/css/style.min.css" rel="stylesheet">
-    <link href="/fontawesome/css/all.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- Global site tag (gtag.js) - Google Analytics-->
-    <script>
-        window.dataLayer = window.dataLayer || [];
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        // Shared ID
-        gtag('config', 'UA-118965717-3');
-        // Bootstrap ID
-        gtag('config', 'UA-118965717-5');
-    </script>
+    <!-- Bootstrap Core Css -->
+    <link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="/css/themes/all-themes.css" rel="stylesheet" />
+
+    @yield('plugins')
 </head>
 
-<style>
-    i {
-        margin-right:10px;
-    }
-</style>
+<body class="theme-red">
 
-@yield('styles')
+    @yield('styles')
 
-<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-    @include('includes.header')
-    <div class="app-body">
-        @include('includes.sidebar')
-        <main class="main">
-            @yield('content')
-        </main>
+
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
     </div>
-    @include('includes.footer')
-    <!-- CoreUI and necessary plugins-->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="/js/main.js"></script>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    @include('includes.header')
+    <section>
+        @include('includes.sidebar')
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            @yield('content')
+        </div>
+
+    </section>
+
+    <!-- Jquery Core Js -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <!-- Slimscroll Plugin Js -->
+    <script src="/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="/plugins/node-waves/waves.js"></script>
+
+
+    @yield('scripts')
 </body>
 
 </html>

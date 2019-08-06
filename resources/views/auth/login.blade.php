@@ -1,129 +1,112 @@
 <!DOCTYPE html>
-<!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v2.1.15
-* @link https://coreui.io
-* Copyright (c) 2018 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://coreui.io/license)
--->
-
-<html lang="en">
+<html>
 
 <head>
-    <base href="./">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Login to MLM</title>
-    <!-- Main styles for this application-->
-    <link href="/css/style.min.css" rel="stylesheet">
-    <link href="/fontawesome/css/all.css" rel="stylesheet">
-    <!-- Global site tag (gtag.js) - Google Analytics-->
-    
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
 
-    <script>
-        window.dataLayer = window.dataLayer || [];
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        // Shared ID
-        gtag('config', 'UA-118965717-3');
-        // Bootstrap ID
-        gtag('config', 'UA-118965717-5');
-    </script>
+    <!-- Bootstrap Core Css -->
+    <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="../../css/style.css" rel="stylesheet">
 </head>
 
-<style>
+<body class="login-page">
+    <div class="login-box">
+        <div class="logo">
+            <a href="javascript:void(0);">Admin<b>MLM</b></a>
+            <small>Big Dreams - MLM</small>
+        </div>
+        <div class="card">
+            <div class="body">
+                <form id="sign_in" method="POST" action="{{ route('login') }}">
+                @csrf
+                    <div class="msg">Sign in to start your session</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-body {
-    background: url("/img/hero-1.jpg");
-    background-position: center;
-    background-size: cover;
-}
-
-</style>
-
-<body class="app flex-row align-items-center">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card-group">
-                    <div class="card p-4">
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('login') }}">
-                                @csrf
-                                <h1>Login</h1>
-                                <p class="text-muted">Sign In to your account</p>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-envelope-square"></i>
-                                        </span>
-                                    </div>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="input-group mb-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-key"></i>
-                                        </span>
-                                    </div>
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="input-group mb-4" style="display:flex; align-items:center; justify-content:center">
-                                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <button type="submit" class="btn btn-primary px-4">
-                                            {{ __('Login') }}
-                                        </button>
-                                    </div>
-                                    <div class="col-6 text-right">
-                                        @if (Route::has('password.request'))
-                                        <a class="btn btn-link px-0" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Password?') }}
-                                        </a>
-                                        @endif
-                                    </div>
-                                </div>
-                            </form>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
-                    <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
-                        <div class="card-body text-center">
-                            <div>
-                                <h2>Why us?</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-xs-8 p-t-5">
+                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <label for="rememberme">Remember Me</label>
+                        </div>
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-block bg-pink waves-effect">
+                                {{ __('Login') }}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row m-t-15 m-b--20">
+                        <div class="col-xs-6">
+                            <a href="sign-up.html">Register Now!</a>
+                        </div>
+                        <div class="col-xs-6 align-right">
+                            @if (Route::has('password.request'))
+                            <a href="{{ route('password.request') }}">
+                                {{ __('Forgot Password?') }}
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
+    <!-- Jquery Core Js -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="/plugins/node-waves/waves.js"></script>
+
+    <!-- Validation Plugin Js -->
+    <script src="/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <!-- Custom Js -->
+    <script src="/js/admin.js"></script>
+    <script src="/js/pages/examples/sign-in.js"></script>
 </body>
 
 </html>

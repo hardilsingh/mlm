@@ -26,9 +26,7 @@ Auth::routes();
 
 
 Route::group(['middleware' => ['is_verified']], function () {
-    Route::get('/home', function () {
-        return view('admin.dashboard.index');
-    });
+    Route::resource('/home' , 'dashboardController');
     Route::resource('/investors', 'investorsController');
     Route::resource('/payments', 'paymentsController');
     Route::resource('/treeView', 'treeViewController');

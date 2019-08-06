@@ -41,6 +41,8 @@ class registerUser extends FormRequest
             'path_2'=>'required|image|mimes:jpeg,png,jpg|max:2048',
             'path_3'=>'required|image|mimes:jpeg,png,jpg|max:2048',
             'created_by',
+            'dob',
+            'gender',
         ];
     }
 }
