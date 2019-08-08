@@ -5,6 +5,7 @@ use App\User;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class treeViewController extends Controller
 {
@@ -22,9 +23,10 @@ class treeViewController extends Controller
         ->where('side' , 2)->get();
 
         if(isset($_GET['tree_id'])){
-            $tree_id = $_GET['tree_id'];
+            $id = Crypt::decrypt($_GET['tree_id']);
+            
 
-            $users = User::findOrFail($tree_id);
+            $users = User::findOrFail($id);
             $all_users = User::where('created_by' , $users->vid)->get();
 
         }else {

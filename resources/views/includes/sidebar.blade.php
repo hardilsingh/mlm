@@ -3,7 +3,12 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
+                    @if(Auth::user()->profile_path)
+                    <img src="/storage/profile/{{Auth::user()->profile_path}}" width="48" height="48" alt="User" />
+                    @endif
+                    @if(!Auth::user()->profile_path)
                     <img src="/images/user.png" width="48" height="48" alt="User" />
+                    @endif
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</div>
@@ -11,9 +16,7 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+                            <li><a href="/profile"><i class="material-icons">person</i>Profile</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -35,6 +38,12 @@
                         <a href="/home">
                             <i class="material-icons">home</i>
                             <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/profile">
+                            <i class="material-icons">home</i>
+                            <span>Profile</span>
                         </a>
                     </li>
                     <li>
@@ -61,10 +70,10 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                    &copy; 2019 <a href="javascript:void(0);"></a>.
                 </div>
                 <div class="version">
-                    <b>Version: </b> 1.0.5
+                    <b>Version: </b> 1.0.0
                 </div>
             </div>
             <!-- #Footer -->

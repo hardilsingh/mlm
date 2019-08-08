@@ -31,7 +31,7 @@ class registerUser extends FormRequest
             'vid'=>'required',
             'ph'=>'required|max:10|min:10',
             'street'=>'required',
-            'city_id'=>'required',
+            'city'=>'required',
             'state_id'=>'required',
             'country_id'=>'required',
             'side'=>'required',
@@ -40,9 +40,12 @@ class registerUser extends FormRequest
             'path'=>'required|image|mimes:jpeg,png,jpg|max:2048',
             'path_2'=>'required|image|mimes:jpeg,png,jpg|max:2048',
             'path_3'=>'required|image|mimes:jpeg,png,jpg|max:2048',
+            'profile_path'=>'required|image|mimes:jpeg,png,jpg|max:2048',
             'created_by',
             'dob',
             'gender',
+            'account',
+            'ifsc_code',
         ];
     }
 }

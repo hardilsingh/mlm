@@ -5,7 +5,26 @@
 @section('styles')
 <style>
     .tf-nc {
-        border: 3px dotted #F44336 !important;
+        border: 3px solid #F44336 !important;
+    }
+
+    img {
+        height: 125% !important;
+    }
+
+    @media only screen and (max-width: 600px) {
+        p {
+            font-size: 50% !important;
+        }
+
+        img {
+            height: 50% !important
+        }
+    }
+
+    a {
+        padding:5px 3px !important; 
+        margin-top:5px !important;
     }
 </style>
 @stop
@@ -63,8 +82,8 @@
                                     <span class="tf-nc" style="display:flex; flex-direction:column; align-items:center;">
                                         <img src="/images/user-tie.svg" alt="" height="60px" style="margin-top:10px;">
                                         <p class="badge bg-red" style="font-size:18px; padding:5px 3px;">{{$user->name}}</p>
-                                        <p class="badge bg-yellow" style="font-size:15px; padding:5px 3px;"><a href="/treeView?tree_id={{$user->id}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                        <a href="/treeView?tree_id={{$user->id}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
+                                        <p class="badge bg-yellow" style="font-size:15px; padding:5px 3px;"><a href="javascriptvoid(0)" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
                                     </span>
                                 </li>
                                 @endforeach
@@ -74,8 +93,8 @@
                                     <span class="tf-nc" style="display:flex; flex-direction:column; align-items:center;">
                                         <img src="/images/user-tie.svg" alt="" height="60px" style="margin-top:10px;">
                                         <p class="badge bg-red" style="font-size:18px; padding:5px 3px;">{{$user->name}}</p>
-                                        <p class="badge bg-yellow" style="font-size:15px; padding:5px 3px;"><a href="/treeView?tree_id={{$user->id}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                        <a href="/treeView?tree_id={{$user->id}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
+                                        <p class="badge bg-yellow" style="font-size:15px; padding:5px 3px;"><a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
                                     </span>
                                 </li>
                                 @endforeach
@@ -87,8 +106,8 @@
                                     <span class="tf-nc" style="display:flex; flex-direction:column; align-items:center;">
                                         <img src="/images/user-tie.svg" alt="" height="60px" style="margin-top:10px;">
                                         <p class="badge bg-red" style="font-size:18px; padding:5px 3px;">{{$user->name}}</p>
-                                        <p class="badge bg-yellow" style="font-size:15px; padding:5px 3px;"><a href="/treeView?tree_id={{$user->id}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                        <a href="/treeView?tree_id={{$user->id}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
+                                        <p class="badge bg-yellow" style="font-size:15px; padding:5px 3px;"><a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
                                     </span>
                                 </li>
                                 @endforeach
@@ -100,8 +119,8 @@
                                     <span class="tf-nc" style="display:flex; flex-direction:column; align-items:center">
                                         <img src="/images/user-tie.svg" alt="" height="40px" style="margin-top:10px;">
                                         <p class="badge bg-red" style="font-size:10px;">{{$user->name}}</p>
-                                        <p class="badge bg-yellow" style="font-size:10px; padding:5px 3px;"><a href="/treeView?tree_id={{$user->id}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                        <a href="/treeView?tree_id={{$user->id}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
+                                        <p class="badge bg-yellow" style="font-size:10px; padding:5px 3px;"><a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
                                     </span>
                                 </li>
                                 @endforeach
@@ -140,11 +159,11 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-12 text-center">
-                                        <p class="badge bg-yellow" style="font-size:20px; padding:5px 3px;"><a href="#" class=" nav-link text-white">ID: {{$users->vid}}</a></p>
+                                <div class=" row">
+                                            <div class="col-lg-12 text-center">
+                                                <p class="badge bg-yellow" style="font-size:20px; padding:5px 3px;"><a href="#" class=" nav-link text-white">ID: {{$users->vid}}</a></p>
+                                            </div>
                                     </div>
-                                </div>
                             </span>
                             <ul>
                                 @foreach($all_users as $user)
@@ -153,8 +172,8 @@
                                     <span class="tf-nc" style="display:flex; flex-direction:column; align-items:center;">
                                         <img src="/images/user-tie.svg" alt="" height="60px" style="margin-top:10px;">
                                         <p class="badge bg-red" style="font-size:20px; padding:5px 3px;">{{$user->name}}</p>
-                                        <p class="badge bg-yellow" style="font-size:20px; padding:5px 3px;"><a href="/treeView?tree_id={{$user->id}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                        <a href="/treeView?tree_id={{$user->id}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
+                                        <p class="badge bg-yellow" style="font-size:20px; padding:5px 3px;"><a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
                                     </span>
                                 </li>
                                 @endforeach

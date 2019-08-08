@@ -4,6 +4,7 @@
 <!-- Bootstrap Select Css -->
 <link href="/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 
+
 @stop
 @section('content')
 
@@ -120,12 +121,14 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="form-group">
-                            {!! Form::select('state_id' , [''=>'Select a state' , $states] , '' , ['class'=>'form-control show-tick']) !!}
+                            <div class="form-line">
+                                {!! Form::text('city' , null , ['class'=>'form-control' , 'placeholder'=>'City Name']) !!}
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="form-group">
-                            {!! Form::select('city_id' , [''=>'Select a city' , $cities] , '' , ['class'=>'form-control show-tick']) !!}
+                            {!! Form::select('state_id' , [''=>'Select a state' , $states] , '' , ['class'=>'form-control show-tick']) !!}
                         </div>
                     </div>
                     <div class="col-lg-3">
@@ -195,6 +198,36 @@
     </div>
 </div>
 
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2 class="h4">Bank Details &rarr;</h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+
+                            <div class="form-line">
+                                {!! Form::text('account' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Account Number']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+
+                            <div class="form-line">
+                                {!! Form::text('ifsc_code' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Bank IFSC code']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="row clearfix">
 
@@ -207,14 +240,14 @@
 
             <div class="body">
                 <div class="row clearfix">
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="path">Upload Addhar Card (Front:)</label>
                             {!! Form::file('path' , null , ['class'=>'form-control']) !!}
                         </div>
 
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="path_2">Upload Addhar Card (Back:)</label>
                             {!! Form::file('path_2' , null , ['class'=>'form-control']) !!}
@@ -222,10 +255,17 @@
 
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="form-group">
                             <label for="path_3">Upload your Pan Card:</label>
                             {!! Form::file('path_3' , null , ['class'=>'form-control']) !!}
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label for="path_3">Upload your Photo:</label>
+                            {!! Form::file('profile_path' , null , ['class'=>'form-control']) !!}
                         </div>
 
                     </div>
@@ -245,22 +285,14 @@
 
     </div>
 </div>
+
+
 {!! Form::close() !!}
 
 @stop
 
 @section('scripts')
-<!-- Autosize Plugin Js -->
-<script src="../../plugins/autosize/autosize.js"></script>
 
-<!-- Moment Plugin Js -->
-<script src="../../plugins/momentjs/moment.js"></script>
-
-<!-- Bootstrap Material Datetime Picker Plugin Js -->
-<script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-
-<!-- Bootstrap Datepicker Plugin Js -->
-<script src="../../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
 <!-- Custom Js -->
 <script src="../../js/admin.js"></script>

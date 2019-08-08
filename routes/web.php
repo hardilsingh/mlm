@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
+Route::get('/',function () {
     return view('welcome');
 });
 
@@ -26,10 +26,12 @@ Auth::routes();
 
 
 Route::group(['middleware' => ['is_verified']], function () {
-    Route::resource('/home' , 'dashboardController');
+    Route::resource('/home', 'dashboardController');
     Route::resource('/investors', 'investorsController');
     Route::resource('/payments', 'paymentsController');
     Route::resource('/treeView', 'treeViewController');
+    Route::get('/verifyUser' , 'profileController@verifyUser');
+    Route::get('/updateUserPassword' , 'profileController@updatePassword');
     Route::resource('/profile', 'profileController');
     Route::resource('/verify-users', 'verifyUsersController');
 });

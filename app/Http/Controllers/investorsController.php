@@ -13,6 +13,8 @@ use App\addressbook;
 use App\phonebook;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\accountDetail;
+use Illuminate\Support\Facades\Crypt;
 
 class investorsController extends Controller
 {
@@ -40,12 +42,11 @@ class investorsController extends Controller
     public function create()
     {
         //
-        $cities = city::pluck('name', 'id');
         $states = state::pluck('name', 'id');
         $countries = country::pluck('name', 'id');
         $latest_vid = User::orderBy('created_at', 'DESC')->first();
         $new_vid = $latest_vid->vid + 1;
-        return view('admin.investors.create', compact(['cities', 'states', 'countries', 'new_vid']));
+        return view('admin.investors.create', compact([ 'states', 'countries', 'new_vid']));
     }
 
     /**
@@ -60,6 +61,11 @@ class investorsController extends Controller
         $input = $request->all();
 
         $latest_vid = User::orderBy('created_at', 'DESC')->first();
+
+        $path = storage_path("/app/public/profile");
+        $image4 = $request->file('profile_path');        
+        $imageName4 = time() . '.' . $image4->getClientOriginalExtension();
+        $image4->move($path, $imageName4);
 
         $new_user = User::create([
             'name' => $input['name'],
@@ -76,12 +82,13 @@ class investorsController extends Controller
             'created_by' => Auth::user()->vid,
             'dob'=>$input['dob'],
             'gender'=>$input['gender'],
+            'profile_path'=>$imageName4,
         ]);
 
         $new_address = addressbook::create([
             'user_id' => $new_user->id,
             'street' => $input['street'],
-            'city_id' => $input['city_id'],
+            'city' => $input['city'],
             'state_id' => $input['state_id'],
             'country_id' => $input['country_id'],
         ]);
@@ -91,17 +98,27 @@ class investorsController extends Controller
             'ph' => $input['ph']
         ]);
 
-        Storage::makeDirectory("/public/uploads/$new_user->vid");
+        $new_account = accountDetail::create([
+            'user_id'=>$new_user->id,
+            'account'=>$input['account'],
+            'ifsc_code'=>$input['ifsc_code'],
+
+        ]);
+
+        Storage::makeDirectory("/uploads/$new_user->vid");
         $image1 = $request->file('path');
         $image2 = $request->file('path_2');
         $image3 = $request->file('path_3');
-        $imageName1 = time() . '.' . $image1->getClientOriginalExtension();
-        $imageName2 = time() . '.' . $image2->getClientOriginalExtension();
-        $imageName3 = time() . '.' . $image3->getClientOriginalExtension();
-        $path = storage_path("/public/uploads/$new_user->vid");
-        $image1->move($path, $imageName1);
-        $image2->move($path, $imageName2);
-        $image3->move($path, $imageName3);
+        $imageName1 = uniqid('aFront') . '.' . $image1->getClientOriginalExtension();
+        $imageName2 = uniqid('aback') . '.' . $image2->getClientOriginalExtension();
+        $imageName3 = uniqid('pan') . '.' . $image3->getClientOriginalExtension();
+        $path_1 = storage_path("/app/public/uploads/$new_user->vid");
+        $image1->move($path_1, $imageName1);
+        $image2->move($path_1, $imageName2);
+        $image3->move($path_1, $imageName3);
+
+
+
 
         $request->session()->flash('created', 'User registerd successfully! Your Password and login id has been sent to registered mobile number.');
     }

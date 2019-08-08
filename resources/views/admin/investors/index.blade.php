@@ -77,7 +77,7 @@
                                     <span class="badge bg-green">Verified</span>
                                     @endif
                                 </td>
-                                <td><a href="#" class="btn btn-primary">View</a></td>
+                                <td><a href="/profile?user_id={{Crypt::encrypt($user->id)}}" class="btn btn-primary">View</a></td>
                             </tr>
 
                             @endforeach

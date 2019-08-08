@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','vid','points','pin','invested','role','addhar_number','pan_number','is_verified','side','created_by', 'dob' , 'gender'
+        'name', 'email', 'password','vid','points','pin','invested','role','addhar_number','pan_number','is_verified','side','created_by', 'dob' , 'gender' , 'profile_path',
     ];
 
     /**
@@ -39,11 +39,20 @@ class User extends Authenticatable
 
 
     public function address() {
-        return $this->hasOne('App/addressbook' , 'user_id');
+        return $this->hasOne('App\addressbook' , 'user_id');
     }
 
     public function phonebook() {
         return $this->hasOne('App\phonebook' , 'user_id');
+    }
+
+    public function profile_photo() {
+        return $this->hasOne('App\imagePath' , 'user_id');
+    }
+
+
+    public function accountDetail() {
+        return $this->hasOne('App\accountDetail' , 'user_id');
     }
 
 }
