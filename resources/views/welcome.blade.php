@@ -42,7 +42,7 @@
             @endif</p>
         </div>
         <div class="w3-display-middle">
-            <h1 class="w3-jumbo w3-animate-top">Multilevel Marketing</h1>
+            <h1 class="w3-jumbo w3-animate-top">Big Dreams Vision</h1>
             <hr class="w3-border-grey" style="margin:auto;width:40%">
             <p class="">
 

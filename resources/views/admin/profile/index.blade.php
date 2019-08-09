@@ -1,10 +1,14 @@
 @extends('layouts.admin')
 @section('styles')
-
+<!-- Sweetalert Css -->
+<link href="/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
 @stop
 @section('content')
 @if(!isset($_GET['user_id']))
-<div class="container-fluid">
+
+
+<div class="container-fluid js-sweetalert">
+    <button class="btn btn-primary waves-effect myButton" data-type="success" style="display:none">CLICK ME</button>
     <div class="row clearfix">
         <div class="col-xs-12 col-sm-3">
             <div class="card profile-card">
@@ -174,7 +178,7 @@
 
                                 'action'=>['profileController@update', $user->id],
                                 'method'=>'PATCH',
-                                'class'=>'form form-horizontal'
+                                'class'=>'form form-horizontal',
 
                                 ]) !!}
                                 <div class="form-group">
@@ -211,12 +215,11 @@
                                         <label for="terms_condition_check">I agree to the <a href="#">terms and conditions</a></label>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group js-sweetalert">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                        {!! Form::submit('SUBMIT' , ['class'=>'btn btn-danger']) !!}
+                                        <button class="btn btn-danger waves-effect" type="submit">Update &rarr;</button>
                                     </div>
                                 </div>
-                                </form>
                             </div>
                             {!! Form::close() !!}
                             <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
@@ -439,10 +442,29 @@
 @stop
 
 @section('scripts')
+
+
+
+<!-- SweetAlert Plugin Js -->
+<script src="/plugins/sweetalert/sweetalert.min.js"></script>
+
+<!-- Custom Js -->
+<script src="/js/admin.js"></script>
+<script src="/js/pages/ui/dialogs.js"></script>
+
+<!-- Demo Js -->
+<script src="/js/demo.js"></script>
 <!-- Custom Js -->
 <script src="/js/admin.js"></script>
 <script src="/js/pages/examples/profile.js"></script>
 
 <!-- Demo Js -->
 <script src="/js/demo.js"></script>
+@if(Session::has('success'))
+<script>
+    $(document).ready(function() {
+        $(".myButton").trigger('click', function(){});
+    });
+</script>
+@endif
 @stop

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 
 use Illuminate\Http\Request;
@@ -17,24 +18,12 @@ class treeViewController extends Controller
     public function index(Request $request)
     {
         //
-        $under_users_left = User::where('created_by' , Auth::user()->vid)
-        ->where('side' , 1)->get();
-        $under_users_right = User::where('created_by' , Auth::user()->vid)
-        ->where('side' , 2)->get();
+        $under_users_left = User::where('created_by', Auth::user()->vid)
+            ->where('side', 1)->get();
+        $under_users_right = User::where('created_by', Auth::user()->vid)
+            ->where('side', 2)->get();
 
-        if(isset($_GET['tree_id'])){
-            $id = Crypt::decrypt($_GET['tree_id']);
-            
-
-            $users = User::findOrFail($id);
-            $all_users = User::where('created_by' , $users->vid)->get();
-
-        }else {
-            $all_users = "";
-            $users = "";
-        }
-
-        return view('admin.treeView.index' , compact('under_users_left' , 'under_users_right' , 'all_users' , 'users'));
+        return view('admin.treeView.index', compact('under_users_left', 'under_users_right'));
     }
 
     /**
@@ -101,5 +90,14 @@ class treeViewController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function loadTree(Request $request)
+    {
+        if ($request->ajax()) {
+            $id = $_GET['vid'];
+            $users = User::where('created_by', $id)->get();
+            return $users;
+        }
     }
 }

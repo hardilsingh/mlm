@@ -118,9 +118,8 @@ class investorsController extends Controller
         $image3->move($path_1, $imageName3);
 
 
-
-
-        $request->session()->flash('created', 'User registerd successfully! Your Password and login id has been sent to registered mobile number.');
+        $id = Crypt::encrypt($new_user->id);
+        return redirect("/profile?user_id=$id");
     }
 
     /**

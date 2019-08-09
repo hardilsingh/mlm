@@ -44,7 +44,7 @@ function showWithTitleMessage() {
 }
 
 function showSuccessMessage() {
-    swal("Good job!", "You clicked the button!", "success");
+    swal("Done!", "", "success");
 }
 
 function showConfirmMessage() {
@@ -126,15 +126,15 @@ function showPromptMessage() {
 
 function showAjaxLoaderMessage() {
     swal({
-        title: "Ajax request example",
-        text: "Submit to run ajax request",
+        title: "Are you sure?",
+        text: "Click on submit button to proceed",
         type: "info",
         showCancelButton: true,
         closeOnConfirm: false,
         showLoaderOnConfirm: true,
     }, function () {
         setTimeout(function () {
-            swal("Ajax request finished!");
+            swal("Done!");
         }, 2000);
     });
 }

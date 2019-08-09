@@ -29,6 +29,7 @@ Route::group(['middleware' => ['is_verified']], function () {
     Route::resource('/home', 'dashboardController');
     Route::resource('/investors', 'investorsController');
     Route::resource('/payments', 'paymentsController');
+    Route::get('/ajaxRequest' , 'treeViewController@loadtree');
     Route::resource('/treeView', 'treeViewController');
     Route::get('/verifyUser' , 'profileController@verifyUser');
     Route::get('/updateUserPassword' , 'profileController@updatePassword');

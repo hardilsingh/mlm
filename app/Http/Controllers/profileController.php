@@ -98,6 +98,9 @@ class profileController extends Controller
         $tel->update([
             'ph' => $input['ph']
         ]);
+
+        $request->session()->flash('success', 'Updated Successfully');
+        return redirect()->back();
     }
 
     /**
@@ -130,9 +133,11 @@ class profileController extends Controller
             $password = Hash::make($request->password);
             $user = User::findOrFail(Auth::user()->id);
             $user->update([
-                'password'=>$password
+                'password' => $password
             ]);
-        }else {
+            $request->session()->flash('success', 'Updated Successfully');
+            return redirect()->back();
+        } else {
             return redirect()->back();
         }
     }

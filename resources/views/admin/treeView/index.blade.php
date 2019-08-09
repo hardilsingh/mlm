@@ -6,6 +6,26 @@
 <style>
     .tf-nc {
         border: 3px solid #F44336 !important;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        background: linear-gradient(to right, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('/images/user-tie.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        cursor: pointer;
+
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    button {
+        height: 100px;
+        width: 100px;
+        background: transparent;
+        border-radius: 50%;
     }
 
     img {
@@ -22,9 +42,8 @@
         }
     }
 
-    a {
-        padding:5px 3px !important; 
-        margin-top:5px !important;
+    p {
+        margin-top: 100%;
     }
 </style>
 @stop
@@ -46,7 +65,7 @@
 <div class="block-header">
     <h2>Tree View </h2>
 </div>
-@if(!isset($_GET['tree_id']))
+
 <div class="row clearfix">
     <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
         <div class="card">
@@ -55,46 +74,26 @@
                     <ul>
                         <li>
                             <span class="tf-nc">
-                                <div class="row clearfix">
-                                    <div class="col-lg-12 text-center">
-                                        <img src="/images/2.svg" height="80px" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="row clearfix">
-                                    <div class="col-lg-12 text-center">
-                                        <p class="badge bg-red" style="font-size:20px; padding:5px 3px;">{{Auth::user()->name}}</p>
-                                    </div>
-                                </div>
-
-                                <div class="row clearfix">
-                                    <div class="col-lg-12 text-center">
-                                        <p class="badge bg-yellow" style="font-size:15px; padding:5px 3px;"><a href="#" class=" nav-link text-white">ID: {{Auth::user()->vid}}</a></p>
-                                    </div>
-                                </div>
+                                <p class="badge bg-yellow text-center" style="font-size:12px; padding:5px 3px; margin-top:100%"><a href="#" class=" nav-link text-white">ID: {{Auth::user()->vid}}</a></p>
                             </span>
+
 
                             <ul>
                                 @if(Auth::user()->side == 0)
                                 @foreach($under_users_left as $user)
 
                                 <li>
-                                    <span class="tf-nc" style="display:flex; flex-direction:column; align-items:center;">
-                                        <img src="/images/user-tie.svg" alt="" height="60px" style="margin-top:10px;">
-                                        <p class="badge bg-red" style="font-size:18px; padding:5px 3px;">{{$user->name}}</p>
-                                        <p class="badge bg-yellow" style="font-size:15px; padding:5px 3px;"><a href="javascriptvoid(0)" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                        <a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
+                                    <span class="tf-nc" data-id="{{$user->vid}}">
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;margin-top:100%"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
                                     </span>
+
                                 </li>
                                 @endforeach
                                 @foreach($under_users_right as $user)
 
                                 <li>
-                                    <span class="tf-nc" style="display:flex; flex-direction:column; align-items:center;">
-                                        <img src="/images/user-tie.svg" alt="" height="60px" style="margin-top:10px;">
-                                        <p class="badge bg-red" style="font-size:18px; padding:5px 3px;">{{$user->name}}</p>
-                                        <p class="badge bg-yellow" style="font-size:15px; padding:5px 3px;"><a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                        <a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
+                                    <span class="tf-nc" data-id="{{$user->vid}}">
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
                                     </span>
                                 </li>
                                 @endforeach
@@ -103,26 +102,23 @@
                                 @foreach($under_users_left as $user)
 
                                 <li>
-                                    <span class="tf-nc" style="display:flex; flex-direction:column; align-items:center;">
-                                        <img src="/images/user-tie.svg" alt="" height="60px" style="margin-top:10px;">
-                                        <p class="badge bg-red" style="font-size:18px; padding:5px 3px;">{{$user->name}}</p>
-                                        <p class="badge bg-yellow" style="font-size:15px; padding:5px 3px;"><a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                        <a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
+                                    <span class="tf-nc" data-id="{{$user->vid}}">
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
                                     </span>
                                 </li>
+
                                 @endforeach
                                 @endif
                                 @if(Auth::user()->side == 2)
                                 @foreach($under_users_right as $user)
 
                                 <li>
-                                    <span class="tf-nc" style="display:flex; flex-direction:column; align-items:center">
-                                        <img src="/images/user-tie.svg" alt="" height="40px" style="margin-top:10px;">
-                                        <p class="badge bg-red" style="font-size:10px;">{{$user->name}}</p>
-                                        <p class="badge bg-yellow" style="font-size:10px; padding:5px 3px;"><a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                        <a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
+                                    <span class="tf-nc" data-id="{{$user->vid}}">
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
                                     </span>
                                 </li>
+
+
                                 @endforeach
                                 @endif
                             </ul>
@@ -131,63 +127,8 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
-
-@endif
-
-@if(isset($_GET['tree_id']))
-<div class="row clearfix">
-    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-        <div class="card">
-            <div class="body">
-                <div class="tf-tree example text-center">
-                    <ul>
-                        <li>
-                            <span class="tf-nc">
-                                <div class="row clearfix">
-                                    <div class="col-lg-12 text-center">
-                                        <img src="/images/2.svg" height="80px" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-12 text-center">
-                                        <p class="badge bg-red" style="font-size:20px; padding:5px 3px;"">{{$users->name}}</p>
-                                    </div>
-                                </div>
-
-                                <div class=" row">
-                                            <div class="col-lg-12 text-center">
-                                                <p class="badge bg-yellow" style="font-size:20px; padding:5px 3px;"><a href="#" class=" nav-link text-white">ID: {{$users->vid}}</a></p>
-                                            </div>
-                                    </div>
-                            </span>
-                            <ul>
-                                @foreach($all_users as $user)
-
-                                <li>
-                                    <span class="tf-nc" style="display:flex; flex-direction:column; align-items:center;">
-                                        <img src="/images/user-tie.svg" alt="" height="60px" style="margin-top:10px;">
-                                        <p class="badge bg-red" style="font-size:20px; padding:5px 3px;">{{$user->name}}</p>
-                                        <p class="badge bg-yellow" style="font-size:20px; padding:5px 3px;"><a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                        <a href="/treeView?tree_id={{Crypt::encrypt($user->id)}}" class="btn btn-success waves-effect">Expand Tree &rarr;</a>
-                                    </span>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-@endif
 
 
 
@@ -195,6 +136,25 @@
 @stop
 
 @section('scripts')
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.tf-nc').each(function() {
+            let data = $(this).data('id');
+            $(this).one("click", function() {
+                $.get('/ajaxRequest?vid=' + data, function(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var obj = data[i];
+                        $('#data').append("<li> <span class='tf-nc'></span> </li>")
+                    }
+                })
+            })
+        });
+    });
+</script>
+
+
 <!-- Custom Js -->
 <script src="js/admin.js"></script>
 <script src="js/pages/index.js"></script>
