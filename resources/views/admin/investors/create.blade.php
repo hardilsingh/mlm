@@ -155,7 +155,7 @@
 
             <div class="body">
                 <div class="row clearfix">
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <div class="form-line">
                                 @if(Auth::user()->role == 1)
@@ -168,7 +168,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <div class="form-line">
                                 {!! Form::number('addhar_number' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Addhar Number']) !!}
@@ -176,7 +176,7 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <div class="form-line">
                                 {!! Form::number('pan_number' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Pan number']) !!}
@@ -184,6 +184,7 @@
 
                         </div>
                     </div>
+            
                 </div>
             </div>
         </div>
@@ -230,7 +231,8 @@
             </div>
             <div class="body">
                 <div class="row clearfix">
-                    <div class="col-lg-4">
+                    
+                     <div class="col-lg-4">
                         <div class="form-group">
                             <div class="form-line">
                                 {!! Form::number('invested' , null , ['class'=>'form-control' , 'placeholder'=>'Enter initial amount']) !!}
@@ -308,7 +310,7 @@
                 </div>
 
                 <div class="row" style="padding:20px 30px">
-                    <button class="btn btn-lg btn-success text-right" type="submit">
+                   <button class="btn btn-lg btn-success text-right" type="submit">
                         <span class="ui-button-text" id="submit">Submit Information &rarr;</span>
                     </button>
                 </div>
@@ -337,14 +339,12 @@
 <script>
     $('#m_3').click(function() {
         if ($('#m_3').is(':checked')) {
-            $("#cheque_number").css("display", "block");
+            $("#cheque_number").css("display" , "block");
         }
-        if ($('#m_3').is(':checked')) {
-            alert("hello");
-        }
-    });
-
-    $('#submit').click(function() {
+       });
+       
+       
+           $('#submit').click(function() {
         $(this).text("Uploading Please wait ...");
     });
 </script>

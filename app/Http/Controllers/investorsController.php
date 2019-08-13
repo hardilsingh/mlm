@@ -14,9 +14,9 @@ use App\phonebook;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\accountDetail;
-use App\payment;
 use Illuminate\Support\Facades\Crypt;
 use File;
+use App\payment;
 
 class investorsController extends Controller
 {
@@ -106,14 +106,17 @@ $image4->move($path, $imageName4);
             'ifsc_code'=>$input['ifsc_code'],
 
         ]);
-        
-        $new_payments = payment::create([
+
+
+	$new_payments = payment::create([
             'user_id'=>$new_user->id,
             'transaction'=>$input['invested'],
             'transaction_id'=>'BDV'.time().uniqid(mt_rand(),true),
             'mode'=>$input['mode'],
             'cheque_number'=>$input['cheque_number'] ? $input['cheque_number'] : null,
         ]);
+
+        
 
         File::makeDirectory("../public_html/uploads/$new_user->vid" , 0777 ,true);
         $image1 = $request->file('path');
