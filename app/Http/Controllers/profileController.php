@@ -23,7 +23,7 @@ class profileController extends Controller
             $user = User::findOrFail(Auth::user()->id);
             $users = User::where('created_by', Auth::user()->vid)->get();
             return view('admin.profile.index', compact('users', 'user'));
-        } elseif (isset($_GET['user_id'])) {
+        } if (isset($_GET['user_id'])) {
             $id = Crypt::decrypt($_GET['user_id']);
             $user = User::findOrFail($id);
             $encrypted_user_id = Crypt::encrypt($user->id);

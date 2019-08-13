@@ -184,13 +184,6 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <div class="form-line">
-                                {!! Form::number('invested' , null , ['class'=>'form-control' , 'placeholder'=>'Enter initial amount']) !!}
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -219,6 +212,43 @@
 
                             <div class="form-line">
                                 {!! Form::text('ifsc_code' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Bank IFSC code']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2 class="h4">Payment Method &rarr;</h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <div class="form-line">
+                                {!! Form::number('invested' , null , ['class'=>'form-control' , 'placeholder'=>'Enter initial amount']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <input name="mode" type="radio" value="cash" id="m_1" checked />
+                        <label for="m_1">Cash</label>
+                        <input name="mode" type="radio" value="online" id="m_2" />
+                        <label for="m_2">Online Bank Transfer (IMPS/NEFT)</label>
+                        <input name="mode" type="radio" value="cheque" id="m_3" />
+                        <label for="m_3">Cheque</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group" id="cheque_number" style="display:none">
+                            <div class="form-line">
+                                {!! Form::text('cheque_number' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Cheque Number' , 'id'=>'cheque_number']) !!}
                             </div>
                         </div>
                     </div>
@@ -278,7 +308,9 @@
                 </div>
 
                 <div class="row" style="padding:20px 30px">
-                    {!! Form::submit('Submit Information &rarr;' , ['class'=>'btn btn-lg btn-success text-right']) !!}
+                    <button class="btn btn-lg btn-success text-right" type="submit">
+                        <span class="ui-button-text" id="submit">Submit Information &rarr;</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -295,9 +327,25 @@
 
 
 <!-- Custom Js -->
-<script src="../../js/admin.js"></script>
-<script src="../../js/pages/forms/basic-form-elements.js"></script>
+<script src="/js/admin.js"></script>
+<script src="/js/pages/forms/basic-form-elements.js"></script>
 
 <!-- Demo Js -->
-<script src="../../js/demo.js"></script>
+<script src="/js/demo.js"></script>
+
+
+<script>
+    $('#m_3').click(function() {
+        if ($('#m_3').is(':checked')) {
+            $("#cheque_number").css("display", "block");
+        }
+        if ($('#m_3').is(':checked')) {
+            alert("hello");
+        }
+    });
+
+    $('#submit').click(function() {
+        $(this).text("Uploading Please wait ...");
+    });
+</script>
 @stop

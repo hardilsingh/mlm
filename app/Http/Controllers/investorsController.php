@@ -14,7 +14,9 @@ use App\phonebook;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\accountDetail;
+use App\payment;
 use Illuminate\Support\Facades\Crypt;
+use File;
 
 class investorsController extends Controller
 {
@@ -27,9 +29,9 @@ class investorsController extends Controller
     {
         //
         if (Auth::user()->role == 1) {
-            $users = User::paginate(15)->sortByDesc('created_at');
+            $users = User::all()->sortByDesc('created_at');
         }else {
-            $users = User::where('created_by' , Auth::user()->vid)->paginate(15);
+            $users = User::where('created_by' , Auth::user()->vid)->get();
         }
         return view('admin.investors.index',  compact('users'));
     }
@@ -62,10 +64,10 @@ class investorsController extends Controller
 
         $latest_vid = User::orderBy('created_at', 'DESC')->first();
 
-        $path = storage_path("/app/public/profile");
+        $path = "../public_html/profile_photos";
         $image4 = $request->file('profile_path');        
         $imageName4 = time() . '.' . $image4->getClientOriginalExtension();
-        $image4->move($path, $imageName4);
+$image4->move($path, $imageName4);
 
         $new_user = User::create([
             'name' => $input['name'],
@@ -104,15 +106,24 @@ class investorsController extends Controller
             'ifsc_code'=>$input['ifsc_code'],
 
         ]);
+        
+        $new_payments = payment::create([
+            'user_id'=>$new_user->id,
+            'transaction'=>$input['invested'],
+            'transaction_id'=>'BDV'.time().uniqid(mt_rand(),true),
+            'mode'=>$input['mode'],
+            'cheque_number'=>$input['cheque_number'] ? $input['cheque_number'] : null,
+        ]);
 
-        Storage::makeDirectory("/uploads/$new_user->vid");
+        File::makeDirectory("../public_html/uploads/$new_user->vid" , 0777 ,true);
         $image1 = $request->file('path');
         $image2 = $request->file('path_2');
         $image3 = $request->file('path_3');
         $imageName1 = uniqid('aFront') . '.' . $image1->getClientOriginalExtension();
         $imageName2 = uniqid('aback') . '.' . $image2->getClientOriginalExtension();
         $imageName3 = uniqid('pan') . '.' . $image3->getClientOriginalExtension();
-        $path_1 = storage_path("/app/public/uploads/$new_user->vid");
+        
+        $path_1 ="../public_html/uploads/$new_user->vid/";
         $image1->move($path_1, $imageName1);
         $image2->move($path_1, $imageName2);
         $image3->move($path_1, $imageName3);

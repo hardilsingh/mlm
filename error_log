@@ -1,0 +1,2 @@
+[10-Aug-2019 10:01:34 UTC] PHP Notice:  date_default_timezone_set(): Timezone ID '	Asia/Kolkata' is invalid in /home/o7r3nnq7kpev/mlm/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php on line 49
+[10-Aug-2019 10:01:54 UTC] PHP Notice:  date_default_timezone_set(): Timezone ID '	Asia/Kolkata' is invalid in /home/o7r3nnq7kpev/mlm/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php on line 49

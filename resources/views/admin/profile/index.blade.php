@@ -16,7 +16,7 @@
                 <div class="profile-body">
                     <div class="image-area">
                         @if(Auth::user()->profile_path)
-                        <img src="/storage/profile/{{Auth::user()->path}}" alt="AdminBSB - Profile Image" />
+                        <img src="/profile_photos/{{Auth::user()->path}}" alt="AdminBSB - Profile Image" />
                         @endif
                         @if(!Auth::user()->profile_path)
                         <img src="/images/user.png" alt="AdminBSB - Profile Image" />
@@ -279,7 +279,7 @@
                 <div class="profile-body">
                     <div class="image-area">
                         @if($user->profile_path)
-                        <img src="/storage/profile/{{$user->profile_path}}" width="80px" height="80px" alt="AdminBSB - Profile Image" />
+                        <img src="/profile_photos/{{$user->profile_path}}" width="80px" height="80px" alt="AdminBSB - Profile Image" />
                         @endif
                         @if(!$user->profile_path)
                         <img src="/images/user.png" alt="AdminBSB - Profile Image" />
@@ -322,7 +322,7 @@
                         </li>
 
                     </ul>
-                    @if($user->is_verified !== 1 )
+                    @if($user->is_verified == 0 )
                     <a href="/verifyUser?user_id={{$encrypted_user_id}}" class="btn btn-danger btn-lg waves-effect btn-block">Verify User</a>
                     @endif
                 </div>
