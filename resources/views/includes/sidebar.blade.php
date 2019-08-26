@@ -64,6 +64,12 @@
                             <span>Registered Users</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/investors">
+                            <i class="material-icons">check_circle</i>
+                            <span>Report issue</span>
+                        </a>
+                    </li>
 
             </div>
             <!-- #Menu -->

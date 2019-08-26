@@ -344,7 +344,7 @@
        });
        
        
-           $('#submit').click(function() {
+    $('#submit').click(function() {
         $(this).text("Uploading Please wait ...");
     });
 </script>
