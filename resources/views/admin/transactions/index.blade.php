@@ -16,13 +16,13 @@
             </a>
         </li>
         <li class="active">
-            <i class="material-icons">library_books</i> Registered Users
+            <i class="material-icons">library_books</i> Transaction History
         </li>
     </ol>
 </div>
 
 <div class="block-header">
-    <h2>Registered Users</h2>
+    <h2>Transaction History</h2>
 </div>
 
 
@@ -39,45 +39,32 @@
                             <tr>
                                 <th>Investor ID</th>
                                 <th>Name</th>
-                                <th>Telephone</th>
-                                <th>Side</th>
+                                <th>Points Redeemed</th>
+                                <th>Monetary gains</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Intiated on</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Investor ID</th>
                                 <th>Name</th>
-                                <th>Telephone</th>
-                                <th>Side</th>
+                                <th>Points Redeemed</th>
+                                <th>Monetary gains</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Intiated on</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($users as $user)
+                            @foreach($transactions as $transaction)
 
                             <tr>
-                                <td style="font-size:18px;"> <span class="badge bg-green">{{$user->vid}}</span></td>
-                                <td style="font-size:16px;"> {{$user->name}}</td>
-                                <td> {{$user->phonebook->ph}}</td>
-                                <td>
-                                    @if($user->side == 1)
-                                    Left
-                                    @endif
-                                    @if($user->side == 2)
-                                    Right
-                                    @endif
-                                </td>
-                                <td style="font-size:18px;">@if($user->is_verified == 0)
-                                    <span class="badge bg-red">Pending verification</span>
-                                    @endif
-                                    @if($user->is_verified == 1)
-                                    <span class="badge bg-green">Verified</span>
-                                    @endif
-                                </td>
-                                <td><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" class="btn btn-primary">View</a></td>
+                                <td style="font-size:18px;"> <span class="badge bg-green">{{Auth::user()->vid}}</span></td>
+                                <td style="font-size:16px;"> {{Auth::user()->name}}</td>
+                                <td>{{$transaction->points}}</td>
+                                <td>₹ {{$transaction->points * 100}}</td>
+                                <td><span class="{{$transaction->status == 'pending' ? 'badge bg-red' : 'badge bg-green'}}">{{$transaction->status}}</span></td>
+                                <td>{{$transaction->created_at->toDateString()}}</td>
                             </tr>
 
                             @endforeach

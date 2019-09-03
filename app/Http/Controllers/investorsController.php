@@ -30,8 +30,8 @@ class investorsController extends Controller
         //
         if (Auth::user()->role == 1) {
             $users = User::all()->sortByDesc('created_at');
-        }else {
-            $users = User::where('created_by' , Auth::user()->vid)->get();
+        } else {
+            $users = User::where('created_by', Auth::user()->vid)->get();
         }
         return view('admin.investors.index',  compact('users'));
     }
@@ -48,7 +48,7 @@ class investorsController extends Controller
         $countries = country::pluck('name', 'id');
         $latest_vid = User::orderBy('created_at', 'DESC')->first();
         $new_vid = $latest_vid->vid + 1;
-        return view('admin.investors.create', compact([ 'states', 'countries', 'new_vid']));
+        return view('admin.investors.create', compact(['states', 'countries', 'new_vid']));
     }
 
     /**
@@ -65,9 +65,9 @@ class investorsController extends Controller
         $latest_vid = User::orderBy('created_at', 'DESC')->first();
 
         $path = "../public_html/profile_photos";
-        $image4 = $request->file('profile_path');        
+        $image4 = $request->file('profile_path');
         $imageName4 = time() . '.' . $image4->getClientOriginalExtension();
-$image4->move($path, $imageName4);
+        $image4->move($path, $imageName4);
 
         $new_user = User::create([
             'name' => $input['name'],
@@ -75,16 +75,16 @@ $image4->move($path, $imageName4);
             'password' => Hash::make($input['ph']),
             'vid' => $latest_vid->vid + 1,
             'pin' => rand(1000, 9999),
-            'points' => 0,
+            'points' => round($input['points_transferred'] == 0 ? $input['invested'] : $input['points_transferred'] * 100 / 100),
             'side' => $input['side'],
-            'invested' => $input['invested'],
+            'invested' => $input['points_transferred'] == 0 ? $input['invested'] : $input['points_transferred'] * 100 ,
             'role' => 0,
             'addhar_number' => $input['addhar_number'],
             'pan_number' => $input['pan_number'],
             'created_by' => Auth::user()->vid,
-            'dob'=>$input['dob'],
-            'gender'=>$input['gender'],
-            'profile_path'=>$imageName4,
+            'dob' => $input['dob'],
+            'gender' => $input['gender'],
+            'profile_path' => $imageName4,
         ]);
 
         $new_address = addressbook::create([
@@ -101,39 +101,46 @@ $image4->move($path, $imageName4);
         ]);
 
         $new_account = accountDetail::create([
-            'user_id'=>$new_user->id,
-            'account'=>$input['account'],
-            'ifsc_code'=>$input['ifsc_code'],
+            'user_id' => $new_user->id,
+            'account' => $input['account'],
+            'ifsc_code' => $input['ifsc_code'],
 
-        ]);
-
-
-	$new_payments = payment::create([
-            'user_id'=>$new_user->id,
-            'transaction'=>$input['invested'],
-            'transaction_id'=>'BDV'.time().uniqid(mt_rand(),true),
-            'mode'=>$input['mode'],
-            'cheque_number'=>$input['cheque_number'] ? $input['cheque_number'] : null,
         ]);
 
         
+        $current_user = Auth::user();
+        $current_user->update([
+            'points'=> $current_user->points + 10,
+        ]);
 
-        File::makeDirectory("../public_html/uploads/$new_user->vid" , 0777 ,true);
+
+
+        $new_payments = payment::create([
+            'user_id' => $new_user->id,
+            'transaction' => $input['points_transferred'] == 0 ? $input['invested'] : $input['points_transferred'] * 100,
+            'transaction_id' => 'BDV' . time() . uniqid(mt_rand(), true),
+            'mode' => $input['mode'],
+            'cheque_number' => $input['cheque_number'] ? $input['cheque_number'] : 0,
+        ]);
+
+
+
+        File::makeDirectory("../public_html/uploads/$new_user->vid", 0777, true);
         $image1 = $request->file('path');
         $image2 = $request->file('path_2');
         $image3 = $request->file('path_3');
         $imageName1 = uniqid('aFront') . '.' . $image1->getClientOriginalExtension();
         $imageName2 = uniqid('aback') . '.' . $image2->getClientOriginalExtension();
         $imageName3 = uniqid('pan') . '.' . $image3->getClientOriginalExtension();
-        
-        $path_1 ="../public_html/uploads/$new_user->vid/";
+
+        $path_1 = "../public_html/uploads/$new_user->vid/";
         $image1->move($path_1, $imageName1);
         $image2->move($path_1, $imageName2);
         $image3->move($path_1, $imageName3);
 
 
         $id = Crypt::encrypt($new_user->id);
-        return redirect("/profile?user_id=$id");
+        return redirect("/profile?user_id=$id&ref=nav-bar-profile");
     }
 
     /**

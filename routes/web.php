@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/',function () {
     return view('welcome');
 });
@@ -35,4 +34,10 @@ Route::group(['middleware' => ['is_verified']], function () {
     Route::get('/updateUserPassword' , 'profileController@updatePassword');
     Route::resource('/profile', 'profileController');
     Route::resource('/verify-users', 'verifyUsersController');
+    Route::get('/transaction-history', 'RedeemPointsController@transactionHistory' );
+    Route::resource('/redeem-points', 'RedeemPointsController');
+    Route::get('/show-target', 'TargetController@display' );
+    Route::resource('/set-target', 'TargetController');
+    Route::resource('/requests', 'RequestsController');
+    Route::resource('/bugs', 'IssuesController');
 });

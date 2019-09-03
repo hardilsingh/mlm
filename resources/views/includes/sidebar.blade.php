@@ -20,7 +20,7 @@
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                <i class="material-icons">input</i>Sign Out</a>
+                                    <i class="material-icons">input</i>Sign Out</a>
                             </li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
@@ -34,42 +34,117 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="active">
-                        <a href="/home">
+                    <li class="{{$_GET['ref'] == 'nav-bar-home' ? 'active' : false}}">
+                        <a href="/home?ref=nav-bar-home">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="/profile">
-                            <i class="material-icons">home</i>
+                    <li class="
+                        @if($_GET['ref']  == 'nav-bar-profile')
+                        {{'active'}}
+                        @endif
+                    ">
+                        <a href="/profile?ref=nav-bar-profile">
+                            <i class="material-icons">android</i>
                             <span>Profile</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{route('investors.create')}}">
+                    <li class="
+                        @if($_GET['ref']  == 'nav-bar-create')
+                        {{'active'}}
+                        @endif
+                    ">
+                        <a href="/investors/create?ref=nav-bar-create">
                             <i class="material-icons">account_circle</i>
                             <span>User Registration</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="/treeView">
+                    <li class="
+                        @if($_GET['ref']  == 'nav-bar-tree')
+                        {{'active'}}
+                        @endif
+                    ">
+                        <a href="/treeView?ref=nav-bar-tree">
                             <i class="material-icons">layers</i>
                             <span>User Tree View</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="/investors">
+                    <li class="
+                        @if($_GET['ref']  == 'nav-bar-users')
+                        {{'active'}}
+                        @endif
+                    ">
+                        <a href="/investors?ref=nav-bar-users">
                             <i class="material-icons">check_circle</i>
                             <span>Registered Users</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="/investors">
-                            <i class="material-icons">check_circle</i>
+                    @if(Auth::user()->role == 1)
+                    <li class="
+                        @if($_GET['ref'] == 'nav-bar-requests')
+                        {{'active'}}
+                        @endif
+                        ">
+                        <a href="/requests?ref=nav-bar-requests">
+                            <i class="material-icons">email</i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="
+                        @if($_GET['ref'] == 'nav-bar-set-target')
+                        {{'active'}}
+                        @endif
+                        ">
+                        <a href="/set-target?ref=nav-bar-set-target">
+                            <i class="material-icons">assistant_photo</i>
+                            <span>Set Target</span>
+                        </a>
+                    </li>
+                    @endif
+                    @if(Auth::user()->role !== 1)
+                    <li class="
+                        @if($_GET['ref'] == 'nav-bar-redeem-points')
+                        {{'active'}}
+                        @endif
+                        ">
+                        <a href="/redeem-points?ref=nav-bar-redeem-points">
+                            <i class="material-icons">attach_money</i>
+                            <span>Redeem Points</span>
+                        </a>
+                    </li>
+                    <li class="
+                        @if($_GET['ref'] == 'nav-bar-history')
+                        {{'active'}}
+                        @endif
+                        ">
+                        <a href="/transaction-history?ref=nav-bar-history">
+                            <i class="material-icons">bookmark_border</i>
+                            <span>Transaction History</span>
+                        </a>
+                    </li>
+                    <li class="
+                        @if($_GET['ref'] == 'nav-bar-latest-target')
+                        {{'active'}}
+                        @endif
+                        ">
+                        <a href="/show-target?ref=nav-bar-latest-target">
+                            <i class="material-icons">assignment</i>
+                            <span>Latest Target</span>
+                        </a>
+                    </li>
+                    @endif
+                    <li class="
+                        @if($_GET['ref'] == 'nav-bar-report_issue')
+                        {{'active'}}
+                        @endif
+                        ">
+                        <a href="/bugs?ref=nav-bar-report_issue">
+                            <i class="material-icons">bug_report</i>
                             <span>Report issue</span>
                         </a>
                     </li>
+
 
             </div>
             <!-- #Menu -->

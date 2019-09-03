@@ -34,7 +34,7 @@
             @if (Route::has('login'))
             <div class="top-right links">
                 @auth
-                <a href="{{ url('/home') }}" class="w3-btn w3-ripple w3-red">Home</a>
+                <a href="{{ url('/home?ref=nav-bar-home') }}" class="w3-btn w3-ripple w3-red">Home</a>
                 @else
                 <a href="{{ route('login') }}" class="w3-btn w3-ripple w3-red">Login</a>
                 @endauth

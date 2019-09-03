@@ -75,7 +75,7 @@
     </section>
     <section class="content">
         <div class="container-fluid">
-     
+
             @yield('content')
         </div>
 
@@ -95,6 +95,10 @@
 
     <!-- Waves Effect Plugin Js -->
     <script src="/plugins/node-waves/waves.js"></script>
+
+    <!-- Custom Js -->
+    <script src="/js/admin.js"></script>
+    <script src="/js/pages/ui/dialogs.js"></script>
 
 
     @yield('scripts')

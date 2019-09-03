@@ -179,12 +179,12 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <div class="form-line">
-                                {!! Form::number('pan_number' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Pan number']) !!}
+                                {!! Form::text('pan_number' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Pan number']) !!}
                             </div>
 
                         </div>
                     </div>
-            
+
                 </div>
             </div>
         </div>
@@ -231,8 +231,8 @@
             </div>
             <div class="body">
                 <div class="row clearfix">
-                    
-                     <div class="col-lg-4">
+
+                    <div class="col-lg-4">
                         <div class="form-group">
                             <div class="form-line">
                                 {!! Form::number('invested' , null , ['class'=>'form-control' , 'placeholder'=>'Enter initial amount']) !!}
@@ -246,12 +246,21 @@
                         <label for="m_2">Online Bank Transfer (IMPS/NEFT)</label>
                         <input name="mode" type="radio" value="cheque" id="m_3" />
                         <label for="m_3">Cheque</label>
+                        <input name="mode" type="radio" value="point_transfer" id="m_4" />
+                        <label for="m_4">Point Transfer</label>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group" id="cheque_number" style="display:none">
                             <div class="form-line">
                                 {!! Form::text('cheque_number' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Cheque Number' , 'id'=>'cheque_number']) !!}
                             </div>
+                        </div>
+                        <div class="form-group" id="point_transfer" style="display:none">
+                            <div class="form-line">
+                                {!! Form::number('points_transferred' , 0 , ['class'=>'form-control' , 'placeholder'=>'Enter Points to transfer' , 'id'=>'point_transfer', 'min'=>'1' , 'max'=>Auth::user()->points]) !!}
+                            </div>
+                            <br>
+                            <p>Available points: <span class="badge bg-green"> {{Auth::user()->points}}</span></p>
                         </div>
                     </div>
                 </div>
@@ -310,7 +319,7 @@
                 </div>
 
                 <div class="row" style="padding:20px 30px">
-                   <button class="btn btn-lg btn-success text-right" type="submit">
+                    <button class="btn btn-lg btn-success text-right" type="submit">
                         <span class="ui-button-text" id="submit">Submit Information &rarr;</span>
                     </button>
                 </div>
@@ -339,11 +348,17 @@
 <script>
     $('#m_3').click(function() {
         if ($('#m_3').is(':checked')) {
-            $("#cheque_number").css("display" , "block");
+            $("#cheque_number").css("display", "block");
         }
-       });
-       
-       
+    });
+
+    $('#m_4').click(function() {
+        if ($('#m_4').is(':checked')) {
+            $("#point_transfer").css("display", "block");
+        }
+    });
+
+
     $('#submit').click(function() {
         $(this).text("Uploading Please wait ...");
     });

@@ -452,14 +452,7 @@
 <script src="/js/admin.js"></script>
 <script src="/js/pages/ui/dialogs.js"></script>
 
-<!-- Demo Js -->
-<script src="/js/demo.js"></script>
-<!-- Custom Js -->
-<script src="/js/admin.js"></script>
-<script src="/js/pages/examples/profile.js"></script>
 
-<!-- Demo Js -->
-<script src="/js/demo.js"></script>
 @if(Session::has('success'))
 <script>
     $(document).ready(function() {

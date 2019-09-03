@@ -84,7 +84,7 @@
 
                                 <li>
                                     <span class="tf-nc" data-id="{{$user->vid}}">
-                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;margin-top:100%"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;margin-top:100%"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
                                     </span>
 
                                 </li>
@@ -93,7 +93,7 @@
 
                                 <li>
                                     <span class="tf-nc" data-id="{{$user->vid}}">
-                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
                                     </span>
                                 </li>
                                 @endforeach
@@ -103,7 +103,7 @@
 
                                 <li>
                                     <span class="tf-nc" data-id="{{$user->vid}}">
-                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
                                     </span>
                                 </li>
 
@@ -114,7 +114,7 @@
 
                                 <li>
                                     <span class="tf-nc" data-id="{{$user->vid}}">
-                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
                                     </span>
                                 </li>
 
@@ -136,23 +136,6 @@
 @stop
 
 @section('scripts')
-
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.tf-nc').each(function() {
-            let data = $(this).data('id');
-            $(this).one("click", function() {
-                $.get('/ajaxRequest?vid=' + data, function(data) {
-                    for (var i = 0; i < data.length; i++) {
-                        var obj = data[i];
-                        $('#data').append("<li> <span class='tf-nc'></span> </li>")
-                    }
-                })
-            })
-        });
-    });
-</script>
 
 
 <!-- Custom Js -->

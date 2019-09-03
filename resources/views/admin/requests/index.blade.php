@@ -4,6 +4,10 @@
 <!-- JQuery DataTable Css -->
 <link href="/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 @stop
+@section('styles')
+<!-- Sweetalert Css -->
+<link href="/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+@stop
 @section('content')
 
 
@@ -16,20 +20,21 @@
             </a>
         </li>
         <li class="active">
-            <i class="material-icons">library_books</i> Registered Users
+            <i class="material-icons">library_books</i> Transaction Requests
         </li>
     </ol>
 </div>
 
 <div class="block-header">
-    <h2>Registered Users</h2>
+    <h2>Transaction Requests</h2>
 </div>
 
 
 
 
 <!-- Exportable Table -->
-<div class="row clearfix">
+<div class="row clearfix js-sweetalert">
+    <button class="btn btn-primary waves-effect myButton" data-type="success" style="display:none">CLICK ME</button>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card">
             <div class="body">
@@ -39,9 +44,10 @@
                             <tr>
                                 <th>Investor ID</th>
                                 <th>Name</th>
-                                <th>Telephone</th>
-                                <th>Side</th>
+                                <th>Points Redeemed</th>
+                                <th>Monetary gains</th>
                                 <th>Status</th>
+                                <th>Intiated on</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -49,35 +55,35 @@
                             <tr>
                                 <th>Investor ID</th>
                                 <th>Name</th>
-                                <th>Telephone</th>
-                                <th>Side</th>
+                                <th>Points Redeemed</th>
+                                <th>Monetary gains</th>
                                 <th>Status</th>
+                                <th>Intiated on</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($users as $user)
+                            @foreach($transactions as $transaction)
 
                             <tr>
-                                <td style="font-size:18px;"> <span class="badge bg-green">{{$user->vid}}</span></td>
-                                <td style="font-size:16px;"> {{$user->name}}</td>
-                                <td> {{$user->phonebook->ph}}</td>
+                                <td style="font-size:18px;"> <span class="badge bg-green">{{$transaction->transactionUsers->vid}}</span></td>
+                                <td style="font-size:16px;"> {{$transaction->transactionUsers->name}}</td>
+                                <td>{{$transaction->points}}</td>
+                                <td>₹ {{$transaction->points * 100}}</td>
+                                <td><span class="{{$transaction->status == 'pending' ? 'badge bg-red' : 'badge bg-green'}}">{{$transaction->status}}</span></td>
+                                <td>{{$transaction->created_at->toDateString()}}</td>
                                 <td>
-                                    @if($user->side == 1)
-                                    Left
-                                    @endif
-                                    @if($user->side == 2)
-                                    Right
-                                    @endif
+                                    {!! Form::model($transaction , [
+
+                                    'method'=>'PATCH',
+                                    'action'=>['RedeemPointsController@update' , $transaction->id]
+
+                                    ]) !!}
+
+                                    <button type="submit" class="btn btn-warning btn-lg">Confirm</button>
+
+                                    {!! Form::close() !!}
                                 </td>
-                                <td style="font-size:18px;">@if($user->is_verified == 0)
-                                    <span class="badge bg-red">Pending verification</span>
-                                    @endif
-                                    @if($user->is_verified == 1)
-                                    <span class="badge bg-green">Verified</span>
-                                    @endif
-                                </td>
-                                <td><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" class="btn btn-primary">View</a></td>
                             </tr>
 
                             @endforeach
@@ -109,4 +115,18 @@
 <!-- Custom Js -->
 <script src="/js/admin.js"></script>
 <script src="/js/pages/tables/jquery-datatable.js"></script>
+
+
+<!-- SweetAlert Plugin Js -->
+<script src="/plugins/sweetalert/sweetalert.min.js"></script>
+
+@if(Session::has('success'))
+<script>
+    $(document).ready(function() {
+        $(".myButton").trigger('click', function() {});
+    });
+</script>
+@endif
+
+
 @stop
