@@ -21,7 +21,7 @@ class IsVerified
             if (Auth::user()->is_verified == 1) {
                 return $next($request);
             } else {
-                return redirect('/pending-verification');
+                return redirect('/pending-verification?ref=nav-bar-home');
             } else {
             return redirect('/login');
         }

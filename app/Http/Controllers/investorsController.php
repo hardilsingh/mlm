@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -68,6 +67,8 @@ class investorsController extends Controller
         $image4 = $request->file('profile_path');
         $imageName4 = time() . '.' . $image4->getClientOriginalExtension();
         $image4->move($path, $imageName4);
+        
+        
 
         $new_user = User::create([
             'name' => $input['name'],
@@ -75,17 +76,19 @@ class investorsController extends Controller
             'password' => Hash::make($input['ph']),
             'vid' => $latest_vid->vid + 1,
             'pin' => rand(1000, 9999),
-            'points' => round($input['points_transferred'] == 0 ? $input['invested'] : $input['points_transferred'] * 100 / 100),
+            'points' => round($input['points_transferred'] == 0 ? $input['invested'] / 100 : $input['points_transferred'] * 100 / 100),
             'side' => $input['side'],
             'invested' => $input['points_transferred'] == 0 ? $input['invested'] : $input['points_transferred'] * 100 ,
             'role' => 0,
-            'addhar_number' => $input['addhar_number'],
             'pan_number' => $input['pan_number'],
             'created_by' => Auth::user()->vid,
             'dob' => $input['dob'],
             'gender' => $input['gender'],
             'profile_path' => $imageName4,
         ]);
+        
+        
+        User::sms($input['ph'] , $input['ph'] , $input['email']);
 
         $new_address = addressbook::create([
             'user_id' => $new_user->id,
@@ -126,17 +129,15 @@ class investorsController extends Controller
 
 
         File::makeDirectory("../public_html/uploads/$new_user->vid", 0777, true);
-        $image1 = $request->file('path');
-        $image2 = $request->file('path_2');
         $image3 = $request->file('path_3');
-        $imageName1 = uniqid('aFront') . '.' . $image1->getClientOriginalExtension();
-        $imageName2 = uniqid('aback') . '.' . $image2->getClientOriginalExtension();
         $imageName3 = uniqid('pan') . '.' . $image3->getClientOriginalExtension();
 
         $path_1 = "../public_html/uploads/$new_user->vid/";
-        $image1->move($path_1, $imageName1);
-        $image2->move($path_1, $imageName2);
         $image3->move($path_1, $imageName3);
+        
+        $new_user->update([
+            'path_3'=>$imageName3,
+        ]);
 
 
         $id = Crypt::encrypt($new_user->id);

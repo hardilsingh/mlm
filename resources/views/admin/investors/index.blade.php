@@ -107,6 +107,6 @@
 <script src="/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
 <!-- Custom Js -->
-<script src="/js/admin.js"></script>
+
 <script src="/js/pages/tables/jquery-datatable.js"></script>
 @stop

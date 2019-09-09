@@ -17,6 +17,7 @@
     <h2>Target</h2>
 </div>
 
+@if($target)
 
 <div class="row clearfix">
     <div class="col-lg-12">
@@ -40,6 +41,8 @@
         </div>
     </div>
 </div>
+
+@endif
 
 
 @stop

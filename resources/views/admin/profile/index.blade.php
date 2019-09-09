@@ -15,10 +15,10 @@
                 <div class="profile-header">&nbsp;</div>
                 <div class="profile-body">
                     <div class="image-area">
-                        @if(Auth::user()->profile_path)
-                        <img src="/profile_photos/{{Auth::user()->path}}" alt="AdminBSB - Profile Image" />
+                       @if($user->profile_path)
+                        <img src="/profile_photos/{{$user->profile_path}}" width="80px" height="80px" alt="AdminBSB - Profile Image" />
                         @endif
-                        @if(!Auth::user()->profile_path)
+                        @if(!$user->profile_path)
                         <img src="/images/user.png" alt="AdminBSB - Profile Image" />
                         @endif
                     </div>
@@ -167,6 +167,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row clearfix">
+                                                <div class="col-lg-12 text-center">
+                                                    <div class="col-lg-4">
+                                                        <img src="/uploads/{{Auth::user()->vid}}/{{Auth::user()->path_3}}" alt="..." height="100px">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- #END# Widgets -->
                                     </div>
@@ -190,7 +197,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Email" class="col-sm-2 control-label">Telephone</label>
+                                    <label for="Email" class="col-sm-2 control-label">Email</label>
                                     <div class="col-sm-10">
                                         <div class="form-line">
                                             <input type="email" class="form-control" id="Email" name="email" placeholder="Email" value="{{$user->email}}" required>
@@ -199,7 +206,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="Tel" class="col-sm-2 control-label">Email</label>
+                                    <label for="Tel" class="col-sm-2 control-label">Telephone</label>
                                     <div class="col-sm-10">
                                         <div class="form-line">
                                             <input type="tel" class="form-control" id="Tel" name="ph" placeholder="Telephone" value="{{$user->phonebook->ph}}" required>
@@ -322,8 +329,10 @@
                         </li>
 
                     </ul>
+                    @if(Auth::user()->role == 1)
                     @if($user->is_verified == 0 )
                     <a href="/verifyUser?user_id={{$encrypted_user_id}}" class="btn btn-danger btn-lg waves-effect btn-block">Verify User</a>
+                    @endif
                     @endif
                 </div>
             </div>
@@ -425,6 +434,14 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                                                                        <div class="row clearfix">
+                                                <div class="col-lg-12 text-center">
+                    
+                                                    <div class="col-lg-4">
+                                                        <img src="/uploads/{{$user->vid}}/{{$user->path_3}}" alt="..." height="100px">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <!-- #END# Widgets -->
                                     </div>
@@ -448,9 +465,6 @@
 <!-- SweetAlert Plugin Js -->
 <script src="/plugins/sweetalert/sweetalert.min.js"></script>
 
-<!-- Custom Js -->
-<script src="/js/admin.js"></script>
-<script src="/js/pages/ui/dialogs.js"></script>
 
 
 @if(Session::has('success'))

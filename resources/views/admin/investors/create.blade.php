@@ -50,7 +50,7 @@
                         <div class="form-group">
 
                             <div class="form-line">
-                                {!! Form::text('name' , null , ['class'=>'form-control' , 'placeholder'=>'Enter name']) !!}
+                                {!! Form::text('name' , null , ['class'=>'form-control' , 'placeholder'=>'Enter name' , 'required']) !!}
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                         <div class="form-group">
 
                             <div class="form-line">
-                                {!! Form::email('email' , null , ['class'=>'form-control' , 'placeholder'=>'Enter email']) !!}
+                                {!! Form::email('email' , null , ['class'=>'form-control' , 'placeholder'=>'Enter email' , 'required']) !!}
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         <div class="form-group">
 
                             <div class="form-line">
-                                {!! Form::tel('ph' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Telephone']) !!}
+                                {!! Form::tel('ph' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Telephone'  , 'required']) !!}
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                         <h2 class="card-inside-title">Date of birth</h2>
                         <div class="form-group">
                             <div class="form-line" id="bs_datepicker_container">
-                                <input type="date" name="dob" class="form-control" placeholder="Please choose a date...">
+                                <input required type="date" name="dob" class="form-control" placeholder="Please choose a date...">
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     <div class="col-lg-3">
                         <div class="form-group">
                             <div class="form-line">
-                                {!! Form::text('street' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Street name']) !!}
+                                {!! Form::text('street' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Street name'  , 'required']) !!}
                             </div>
 
                         </div>
@@ -122,18 +122,18 @@
                     <div class="col-lg-3">
                         <div class="form-group">
                             <div class="form-line">
-                                {!! Form::text('city' , null , ['class'=>'form-control' , 'placeholder'=>'City Name']) !!}
+                                {!! Form::text('city' , null , ['class'=>'form-control' , 'placeholder'=>'City Name' , 'required']) !!}
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="form-group">
-                            {!! Form::select('state_id' , [''=>'Select a state' , $states] , '' , ['class'=>'form-control show-tick']) !!}
+                            {!! Form::select('state_id' , [''=>'Select a state' , $states] , '' , ['class'=>'form-control show-tick'  , 'required']) !!}
                         </div>
                     </div>
                     <div class="col-lg-3">
                         <div class="form-group">
-                            {!! Form::select('country_id' , $countries , 100 , ['class'=>'form-control show-tick']) !!}
+                            {!! Form::select('country_id' , $countries , 100 , ['class'=>'form-control show-tick'  , 'required']) !!}
                         </div>
                     </div>
                 </div>
@@ -155,31 +155,19 @@
 
             <div class="body">
                 <div class="row clearfix">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <div class="form-line">
-                                @if(Auth::user()->role == 1)
+                                
                                 {!! Form::select('side' , ['1'=>'Left' , '2'=>'Right'] , '' , ['class'=>'form-control']) !!}
-                                @endif
-                                @if(Auth::user()->role == 0)
-                                <label for="name">Side:</label>
-                                {!! Form::text('side' , Auth::user()->side == 1 ? '1' : '2' , ['class'=>'form-control' , 'readonly']) !!}
-                                @endif
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <div class="form-line">
-                                {!! Form::number('addhar_number' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Addhar Number']) !!}
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <div class="form-line">
-                                {!! Form::text('pan_number' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Pan number']) !!}
+                                {!! Form::text('pan_number' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Pan number'  , 'required']) !!}
                             </div>
 
                         </div>
@@ -204,7 +192,7 @@
                         <div class="form-group">
 
                             <div class="form-line">
-                                {!! Form::text('account' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Account Number']) !!}
+                                {!! Form::text('account' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Account Number'  , 'required']) !!}
                             </div>
                         </div>
                     </div>
@@ -212,7 +200,7 @@
                         <div class="form-group">
 
                             <div class="form-line">
-                                {!! Form::text('ifsc_code' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Bank IFSC code']) !!}
+                                {!! Form::text('ifsc_code' , null , ['class'=>'form-control' , 'placeholder'=>'Enter Bank IFSC code' , 'required']) !!}
                             </div>
                         </div>
                     </div>
@@ -257,7 +245,7 @@
                         </div>
                         <div class="form-group" id="point_transfer" style="display:none">
                             <div class="form-line">
-                                {!! Form::number('points_transferred' , 0 , ['class'=>'form-control' , 'placeholder'=>'Enter Points to transfer' , 'id'=>'point_transfer', 'min'=>'1' , 'max'=>Auth::user()->points]) !!}
+                                {!! Form::number('points_transferred' , 0 , ['class'=>'form-control' , 'placeholder'=>'Enter Points to transfer' , 'id'=>'point_transfer' , 'max'=>Auth::user()->points]) !!}
                             </div>
                             <br>
                             <p>Available points: <span class="badge bg-green"> {{Auth::user()->points}}</span></p>
@@ -281,32 +269,18 @@
 
             <div class="body">
                 <div class="row clearfix">
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label for="path">Upload Addhar Card (Front:)</label>
-                            {!! Form::file('path' , null , ['class'=>'form-control']) !!}
-                        </div>
 
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="form-group">
-                            <label for="path_2">Upload Addhar Card (Back:)</label>
-                            {!! Form::file('path_2' , null , ['class'=>'form-control']) !!}
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-3">
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <label for="path_3">Upload your Pan Card:</label>
-                            {!! Form::file('path_3' , null , ['class'=>'form-control']) !!}
+                            {!! Form::file('path_3' , null , ['class'=>'form-control'  , 'required']) !!}
                         </div>
 
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <label for="path_3">Upload your Photo:</label>
-                            {!! Form::file('profile_path' , null , ['class'=>'form-control']) !!}
+                            {!! Form::file('profile_path' , null , ['class'=>'form-control'  , 'required']) !!}
                         </div>
 
                     </div>
@@ -337,12 +311,6 @@
 @section('scripts')
 
 
-<!-- Custom Js -->
-<script src="/js/admin.js"></script>
-<script src="/js/pages/forms/basic-form-elements.js"></script>
-
-<!-- Demo Js -->
-<script src="/js/demo.js"></script>
 
 
 <script>
@@ -355,6 +323,7 @@
     $('#m_4').click(function() {
         if ($('#m_4').is(':checked')) {
             $("#point_transfer").css("display", "block");
+            
         }
     });
 

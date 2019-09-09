@@ -28,9 +28,7 @@
         border-radius: 50%;
     }
 
-    img {
-        height: 125% !important;
-    }
+    
 
     @media only screen and (max-width: 600px) {
         p {
@@ -40,6 +38,7 @@
         img {
             height: 50% !important
         }
+        
     }
 
     p {
@@ -74,53 +73,47 @@
                     <ul>
                         <li>
                             <span class="tf-nc">
-                                <p class="badge bg-yellow text-center" style="font-size:12px; padding:5px 3px; margin-top:100%"><a href="#" class=" nav-link text-white">ID: {{Auth::user()->vid}}</a></p>
+                                <p class="badge bg-yellow text-center" style="font-size:12px; padding:5px 3px; margin-top:100%"><a href="#" class=" nav-link text-white">ID: {{Auth::user()->vid}} <br>
+                                    
+                                    @if(Auth::user()->side == 0)
+                                    Admin
+                                    @endif
+                                    @if(Auth::user()->side !== 0 )
+                                    @if(Auth::user()->side == 1)
+                                    Left
+                                    @endif
+                                    @if(Auth::user()->side == 2)
+                                    Right
+                                    @endif
+                                    @endif
+                                    
+                                
+                                </a></p>
                             </span>
 
 
                             <ul>
-                                @if(Auth::user()->side == 0)
+                                
                                 @foreach($under_users_left as $user)
 
                                 <li>
                                     <span class="tf-nc" data-id="{{$user->vid}}">
-                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;margin-top:100%"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}} <br> Left</a></p>
                                     </span>
-
                                 </li>
+
                                 @endforeach
                                 @foreach($under_users_right as $user)
 
                                 <li>
                                     <span class="tf-nc" data-id="{{$user->vid}}">
-                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                    </span>
-                                </li>
-                                @endforeach
-                                @endif
-                                @if(Auth::user()->side == 1)
-                                @foreach($under_users_left as $user)
-
-                                <li>
-                                    <span class="tf-nc" data-id="{{$user->vid}}">
-                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
-                                    </span>
-                                </li>
-
-                                @endforeach
-                                @endif
-                                @if(Auth::user()->side == 2)
-                                @foreach($under_users_right as $user)
-
-                                <li>
-                                    <span class="tf-nc" data-id="{{$user->vid}}">
-                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}}</a></p>
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}} <br> Right</a></p>
                                     </span>
                                 </li>
 
 
                                 @endforeach
-                                @endif
+        
                             </ul>
                         </li>
                     </ul>
@@ -137,11 +130,4 @@
 
 @section('scripts')
 
-
-<!-- Custom Js -->
-<script src="js/admin.js"></script>
-<script src="js/pages/index.js"></script>
-
-<!-- Demo Js -->
-<script src="js/demo.js"></script>
 @stop

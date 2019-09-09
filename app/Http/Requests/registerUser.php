@@ -27,7 +27,7 @@ class registerUser extends FormRequest
             //
 
             'name'=>'required',
-            'email'=>'required',
+            'email'=>'required|unique:users',
             'vid'=>'required',
             'ph'=>'required|max:10|min:10',
             'street'=>'required',
@@ -35,10 +35,7 @@ class registerUser extends FormRequest
             'state_id'=>'required',
             'country_id'=>'required',
             'side'=>'required',
-            'addhar_number'=>'required|min:12|max:12',
             'pan_number'=>'required',
-            'path'=>'required|image|mimes:jpeg,png,jpg|max:2048',
-            'path_2'=>'required|image|mimes:jpeg,png,jpg|max:2048',
             'path_3'=>'required|image|mimes:jpeg,png,jpg|max:2048',
             'profile_path'=>'required|image|mimes:jpeg,png,jpg|max:2048',
             'created_by',

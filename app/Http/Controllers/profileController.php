@@ -123,6 +123,8 @@ class profileController extends Controller
         $user->update([
             'is_verified' => 1,
         ]);
+         $request->session()->flash('success', 'Updated Successfully');
+        return redirect()->back();
     }
 
 

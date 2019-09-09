@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','vid','points','pin','invested','role','addhar_number','pan_number','is_verified','side','created_by', 'dob' , 'gender' , 'profile_path',
+        'name', 'email', 'password','vid','points','pin','invested','role','pan_number','is_verified','side','created_by', 'dob' , 'gender' , 'profile_path', 'path_3'
     ];
 
     /**
@@ -53,6 +53,18 @@ class User extends Authenticatable
 
     public function accountDetail() {
         return $this->hasOne('App\accountDetail' , 'user_id');
+    }
+    
+    
+    public static function sms($ph, $request , $user_id)
+    {
+        $msg = "Welcome! Your Username is:". $user_id. " and password is: " .$request . "  Please change your password when you are verified for additional security.";
+        $number = '91' . $ph;
+        $cSession = curl_init();
+        curl_setopt($cSession, CURLOPT_URL, "http://my.msgwow.com/api/sendhttp.php?authkey=292754AKjDKDjFNBb5d710471&mobiles=$number&message=$msg&sender=CDACGP&route=1&country=91");
+        curl_setopt($cSession, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($cSession, CURLOPT_HEADER, false);
+        $alertchk = curl_exec($cSession);
     }
 
 }

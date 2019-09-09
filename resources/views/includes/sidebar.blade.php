@@ -4,11 +4,11 @@
             <div class="user-info">
                 <div class="image">
                     @if(Auth::user()->profile_path)
-                    <img src="/storage/profile/{{Auth::user()->profile_path}}" width="48" height="48" alt="User" />
-                    @endif
-                    @if(!Auth::user()->profile_path)
-                    <img src="/images/user.png" width="48" height="48" alt="User" />
-                    @endif
+                        <img src="/profile_photos/{{Auth::user()->profile_path}}" width="50px" height="50px" alt="AdminBSB - Profile Image" />
+                        @endif
+                        @if(!Auth::user()->profile_path)
+                        <img src="/images/user.png" alt="AdminBSB - Profile Image" />
+                        @endif
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</div>
@@ -16,7 +16,7 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="/profile"><i class="material-icons">person</i>Profile</a></li>
+                            <li><a href="/profile?ref=nav-bar-profile"><i class="material-icons">person</i>Profile</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -80,6 +80,16 @@
                             <span>Registered Users</span>
                         </a>
                     </li>
+                                        <li class="
+                        @if($_GET['ref'] == 'nav-bar-report_issue')
+                        {{'active'}}
+                        @endif
+                        ">
+                        <a href="/bugs?ref=nav-bar-report_issue">
+                            <i class="material-icons">bug_report</i>
+                            <span>Report issue</span>
+                        </a>
+                    </li>
                     @if(Auth::user()->role == 1)
                     <li class="
                         @if($_GET['ref'] == 'nav-bar-requests')
@@ -134,16 +144,7 @@
                         </a>
                     </li>
                     @endif
-                    <li class="
-                        @if($_GET['ref'] == 'nav-bar-report_issue')
-                        {{'active'}}
-                        @endif
-                        ">
-                        <a href="/bugs?ref=nav-bar-report_issue">
-                            <i class="material-icons">bug_report</i>
-                            <span>Report issue</span>
-                        </a>
-                    </li>
+
 
 
             </div>
