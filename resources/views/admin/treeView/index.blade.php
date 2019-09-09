@@ -28,7 +28,7 @@
         border-radius: 50%;
     }
 
-    
+
 
     @media only screen and (max-width: 600px) {
         p {
@@ -38,7 +38,7 @@
         img {
             height: 50% !important
         }
-        
+
     }
 
     p {
@@ -74,46 +74,40 @@
                         <li>
                             <span class="tf-nc">
                                 <p class="badge bg-yellow text-center" style="font-size:12px; padding:5px 3px; margin-top:100%"><a href="#" class=" nav-link text-white">ID: {{Auth::user()->vid}} <br>
-                                    
-                                    @if(Auth::user()->side == 0)
-                                    Admin
-                                    @endif
-                                    @if(Auth::user()->side !== 0 )
-                                    @if(Auth::user()->side == 1)
-                                    Left
-                                    @endif
-                                    @if(Auth::user()->side == 2)
-                                    Right
-                                    @endif
-                                    @endif
-                                    
-                                
-                                </a></p>
+
+                                        @if(Auth::user()->side == 0)
+                                        Admin
+                                        @endif
+                                        @if(Auth::user()->side !== 0 )
+                                        @if(Auth::user()->side == 1)
+                                        Left
+                                        @endif
+                                        @if(Auth::user()->side == 2)
+                                        Right
+                                        @endif
+                                        @endif
+
+
+                                    </a></p>
                             </span>
 
 
                             <ul>
-                                
-                                @foreach($under_users_left as $user)
-
-                                <li>
-                                    <span class="tf-nc" data-id="{{$user->vid}}">
-                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}} <br> Left</a></p>
-                                    </span>
-                                </li>
-
-                                @endforeach
-                                @foreach($under_users_right as $user)
+                                @foreach($under_users as $user)
 
                                 <li>
                                     <span class="tf-nc" data-id="{{$user->vid}}">
                                         <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user->vid}} <br> Right</a></p>
                                     </span>
+                                    <a href="/treeView?ref=nav-bar-tree&tree_view_id={{Crypt::encrypt($user->id)}}#tree_view" style="height:25px;" id="expand" type="button" class="btn btn-primary waves-effect">
+                                        <i class="material-icons">extension</i>
+                                        <span style="padding:10px 5px;">Expand</span>
+                                    </a>
                                 </li>
 
 
                                 @endforeach
-        
+
                             </ul>
                         </li>
                     </ul>
@@ -123,11 +117,44 @@
     </div>
 </div>
 
+<div class="block-header">
+    <h2>Expanded Tree View </h2>
+</div>
 
 
+<div class="row clearfix" id="tree_view">
+    @if(isset($_GET['tree_view_id']))
 
-@stop
+    <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+        <div class="card">
+            <div class="body">
+                <div class="tf-tree example text-center">
+                    <ul>
+                        <li>
+                            <ul>
+                                @foreach($expand as $user_expanded)
 
-@section('scripts')
+                                <li>
+                                    <span class="tf-nc" data-id="{{$user_expanded->vid}}">
+                                        <p class="badge bg-yellow" style="font-size:11px; padding:1px 2px;"><a href="/profile?user_id={{Crypt::encrypt($user_expanded->id)}}&ref=nav-bar-profile" target="_blank" class=" nav-link text-white">ID: {{$user_expanded->vid}} <br> Right</a></p>
+                                    </span>
+                                    <a href="/treeView?ref=nav-bar-tree&tree_view_id={{Crypt::encrypt($user_expanded->id)}}#tree_view" style="height:25px;" id="expand" type="button" class="btn btn-primary waves-effect">
+                                        <i class="material-icons">extension</i>
+                                        <span style="padding:10px 5px;">Expand</span>
+                                    </a>
+                                </li>
+                                @endforeach
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @endif
+</div>
 
 @stop
